@@ -1,7 +1,5 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { COMPILER_PROVIDERS } from '@angular/compiler';
 
 import { CoreModule } from '../core';
 
@@ -21,9 +19,12 @@ import { Overlay, OverlayComponent } from './overlay';
   exports: [
     Overlay,
   ],
-  providers: [
-    COMPILER_PROVIDERS,
-    OverlayService,
-  ]
 })
-export class OverlayModule {}
+export class OverlayModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: OverlayModule,
+      providers: [OverlayService],
+    }
+  }
+}

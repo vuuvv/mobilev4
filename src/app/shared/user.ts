@@ -3,7 +3,7 @@ import { UserInfo } from './user-info';
 import { Store } from './store';
 
 export class User {
-  account: Account[];
+  account: Account;
   user: UserInfo;
-  store: Store[];
+  store: Store;
 }

@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { OverlayModule, PageModule, DialogModule } from '../../components';
+import { SharedModule } from '../shared';
 
 import { LoginComponent } from './login.component';
 import { routing } from './login.routing';

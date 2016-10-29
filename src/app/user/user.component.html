@@ -12,8 +12,8 @@
       </div>
       <div class="weui-cell__bd">
         <div>
-          <p class="username">超级管理员</p>
-          <p class="usercode">A00001</p>
+          <p class="username">{{ user.user.NickName }}</p>
+          <p class="usercode">{{ user.user.UserCode }}</p>
         </div>
       </div>
       <div class="weui-cell__ft">
@@ -113,6 +113,7 @@
         <p>店铺管理</p>
       </div>
       <div class="weui-cell__ft">
+        <p>已授权{{ user.stores.length }}个店铺</p>
       </div>
     </a>
     <a class="weui-cell weui-cell_access" [routerLink]="">
@@ -127,6 +128,7 @@
         <p>资金管理</p>
       </div>
       <div class="weui-cell__ft">
+        <p>{{ balance() | yuan }}</p>
       </div>
     </a>
   </div>
@@ -177,7 +179,7 @@
     </a>
   </div>
   <div class="weui-cells">
-    <a class="weui-cell weui-cell_access" [routerLink]="">
+    <a class="weui-cell weui-cell_access" (click)="logout()">
       <div class="weui-cell__hd">
         <div class="ico">
           <div class="ico-cont ico-quit">

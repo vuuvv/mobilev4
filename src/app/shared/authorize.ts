@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanActivateChild, NavigationExtras, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -18,24 +18,36 @@ export class Login {
 @Injectable()
 export class AuthorizeService {
   isLoggedIn: boolean = false;
+  redirectUrl: string;
   user: User;
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private router: Router) {
+    console.log('authorize ctors');
   }
 
-  private setLogin(user: User): User {
+  private doLogin(user: User): User {
     this.isLoggedIn = true
     this.user = user;
+
+    let redirect = this.redirectUrl ? this.redirectUrl : '/home/user';
+    let navigationExtras: NavigationExtras = {
+      preserveFragment: true,
+      preserveQueryParams: true,
+    };
+    this.router.navigate([redirect], navigationExtras);
+
     return user;
   }
 
   login(data: Login): Observable<User> {
-    return this.http.post<User>('mo/login', data, true).map((user: User) => this.setLogin(user));
+    return this.http.post<User>('mo/login', data, true).map((user: User) => this.doLogin(user));
   }
 
-  logout() {
-    this.isLoggedIn = false;
-    this.user = null;
+  logout(): Observable<any> {
+    return this.http.get('mo/logout').map(() => {
+      this.isLoggedIn = false;
+      this.user = null;
+    });
   }
 
   checkLogin(): Observable<boolean> {
@@ -43,7 +55,7 @@ export class AuthorizeService {
       return Observable.of(true);
     }
     return this.http.get<User>('mo/me', undefined, undefined, undefined, 'none').map((user: User) => {
-      this.setLogin(user);
+      this.doLogin(user);
       return true;
     });
   }

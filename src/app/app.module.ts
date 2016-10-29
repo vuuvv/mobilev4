@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
-import { OverlayModule, DialogModule, PageModule } from '../components';
+import { CoreModule, OverlayModule, DialogModule, PageModule, CarouselModule } from '../components';
 
 import { HomeModule } from './home';
 import { ProductModule } from './product';
 import { LoginModule } from './login';
+import { SharedModule } from './shared';
 
 import { AppComponent } from './app.component';
 
@@ -26,13 +27,17 @@ import { routing } from './app.routing';
     HttpModule,
     RouterModule,
 
+    SharedModule.forRoot(),
+
     HomeModule,
     ProductModule,
     LoginModule,
 
-    OverlayModule,
+    CoreModule.forRoot(),
+    OverlayModule.forRoot(),
     PageModule,
-    DialogModule,
+    DialogModule.forRoot(),
+    CarouselModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

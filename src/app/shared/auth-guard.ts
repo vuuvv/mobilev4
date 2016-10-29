@@ -16,10 +16,11 @@ export class AuthorizeGuard implements CanActivate, CanActivateChild {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+    this.authorize.redirectUrl = state.url;
     return this.authorize.checkLogin().catch((err) => this.notLoginHandler());
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    return this.authorize.checkLogin().catch((err) => this.notLoginHandler());
+    return this.canActivate(route, state);
   }
 }

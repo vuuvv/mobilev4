@@ -6,6 +6,15 @@ import { HomeLayoutComponent, HomeComponent } from './home.component';
 import { UserComponent } from '../user';
 import { NotifyComponent } from '../notify';
 
+import { AuthorizeGuard } from '../shared';
+
+const userRoutes: Routes = [
+  {
+    path: 'user',
+    loadChildren: 'app/user/user.module#UserModule',
+  }
+];
+
 const homeRoutes: Routes = [
   {
     path: '',
@@ -20,12 +29,10 @@ const homeRoutes: Routes = [
         path: '',
         component: HomeComponent,
       },
-      {
-        path: 'user',
-        component: UserComponent,
-      },
+      ...userRoutes,
       {
         path: 'notify',
+        canActivate: [AuthorizeGuard],
         component: NotifyComponent,
       },
     ]

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ConfirmComponent } from './confirm.component';
@@ -18,9 +18,12 @@ import { OverlayService } from '../overlay';
     AlertComponent,
     ConfirmComponent,
   ],
-  providers: [
-    OverlayService,
-    DialogService,
-  ]
 })
-export class DialogModule {}
+export class DialogModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: DialogModule,
+      providers: [DialogService],
+    }
+  }
+}

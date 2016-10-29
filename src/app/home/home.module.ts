@@ -28,7 +28,6 @@ import { homeRouting } from './home.routing';
     PageModule,
     DialogModule,
     CarouselModule,
-    SharedModule,
 
     UserModule,
     NotifyModule,

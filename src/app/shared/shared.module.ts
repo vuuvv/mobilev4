@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { Http as RawHttp } from '@angular/http';
 
@@ -10,13 +10,13 @@ import { AuthorizeGuard } from './auth-guard';
 
 @NgModule({
   imports: [
-    DialogModule,
-    RouterModule,
   ],
-  providers: [
-    Http,
-    AuthorizeService,
-    AuthorizeGuard,
-  ]
 })
-export class SharedModule {}
+export class SharedModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [Http, AuthorizeGuard, AuthorizeService],
+    }
+  }
+}

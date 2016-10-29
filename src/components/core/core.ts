@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { COMPILER_PROVIDERS } from '@angular/compiler';
 
 import { CORE_PIPES } from './pipes';
 import { CORE_SERVICES } from './services';
@@ -9,7 +10,13 @@ import { CORE_SERVICES } from './services';
   ],
   exports: [
     CORE_PIPES,
-  ],
-  providers: [ CORE_SERVICES ],
+  ]
 })
-export class CoreModule {}
+export class CoreModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: CoreModule,
+      providers: [CORE_SERVICES, COMPILER_PROVIDERS],
+    }
+  }
+}
