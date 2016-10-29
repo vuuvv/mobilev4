@@ -1,0 +1,36 @@
+<v-page>
+  <v-header title="登录福建邮乐">
+    <v-btn class="left" v-back icon="back"></v-btn>
+    <v-btn class="right" v-home icon="home"></v-btn>
+  </v-header>
+  <v-content>
+    <form (ngSubmit)="submit()" #loginForm="ngForm">
+      <div class="weui-cells">
+        <div class="weui-cell">
+          <div class="weui-cell__hd"><label class="weui-label">帐号</label></div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" type="text" name="username" required [(ngModel)]="login.username" placeholder="请输入加盟号/手机号">
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__hd"><label class="weui-label">密码</label></div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" type="password" name="password" required [(ngModel)]="login.password" placeholder="请输入密码">
+          </div>
+        </div>
+        <div class="weui-cell weui-cell_vcode">
+          <div class="weui-cell__hd"><label class="weui-label">验证码</label></div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" type="text" name="captcha" required [(ngModel)]="login.captcha" placeholder="请输入验证码">
+          </div>
+          <div class="weui-cell__ft">
+            <img class="weui-vcode-img" [src]="captcha" (click)="refreshCaptcha()">
+          </div>
+        </div>
+      </div>
+      <div class="weui-btn-area">
+        <button type="submit" class="weui-btn weui-btn_warn" [disabled]="loginForm.invalid" [class.weui-btn_disabled]="loginForm.invalid">登录</button>
+      </div>
+    </form>
+  </v-content>
+</v-page>

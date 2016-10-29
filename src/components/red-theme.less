@@ -1,0 +1,62 @@
+@import './mixins.less';
+@import './variables.less';
+
+@header-bg-color: #dd2872;
+@header-font-color: #fff;
+@footer-bg-color: #fff;
+
+
+.red-theme {
+  v-header {
+    background: @header-bg-color;
+
+    .title {
+      color: @header-font-color;
+    }
+
+    .button {
+      color: @header-font-color;
+    }
+  }
+
+  v-footer {
+    background: @footer-bg-color;
+
+    v-item {
+      &.active,&:active {
+        color: @header-bg-color;
+      }
+    }
+  }
+
+  .weui-cell__ft {
+    font-size: 0.65rem;
+  }
+
+  .weui-cell {
+    padding: 0 15px;
+    height: 2.2rem;
+    line-height: 1.5;
+
+    &.origin {
+      padding: 10px 15px;
+      height: auto;
+    }
+  }
+
+  .weui-cell_vcode {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+
+
+  .weui-cell__bd, .weui-cell__ft {
+    display: flex;
+    align-items: center;
+  }
+
+  .page-content {
+    background: #eee;
+  }
+}

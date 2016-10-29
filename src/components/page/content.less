@@ -1,0 +1,11 @@
+@import './variables.less';
+
+v-page {
+  v-footer ~ .page-content {
+    bottom: @footer-height;
+  }
+
+  v-header ~ .page-content {
+    top: @nav-height;
+  }
+}

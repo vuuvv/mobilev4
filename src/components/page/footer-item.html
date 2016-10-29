@@ -1,0 +1,4 @@
+<span class="icon weui-tabbar__icon" [style.background-image]="image" [ngClass]="setIconClasses()">
+</span>
+<p class="weui-tabbar__label" *ngIf="label">{{ label }}</p>
+<span class="badge" *ngIf="badge">{{ badge | async }}</span>

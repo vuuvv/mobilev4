@@ -1,0 +1,161 @@
+  <v-content>
+    <v-carousel [config]="carouselConfig" height="200px"></v-carousel>
+    <div class="quick-entry-nav">
+      <div class="quick-entry-list">
+        <div class="quick-entry">
+          <a href="">
+            <p>
+              <span class="ico ico-shuiguoshengxian">
+                <i class="iconfont icon-shuiguoshengxian"></i>
+              </span>
+            </p>
+            <p class="sub">土特食品</p>
+          </a>
+        </div>
+        <div class="quick-entry">
+          <a href="">
+            <p>
+              <span class="ico ico-shumajiadian">
+                <i class="iconfont icon-shumajiadian"></i>
+              </span>
+            </p>
+            <p class="sub">数码家电</p>
+          </a>
+        </div>
+        <div class="quick-entry">
+          <a href="">
+            <p>
+              <span class="ico ico-badaxilietubiao01">
+                <i class="iconfont icon-badaxilietubiao01"></i>
+              </span>
+            </p>
+            <p class="sub">运动户外</p>
+          </a>
+        </div>
+        <div class="quick-entry">
+          <a href="">
+            <p>
+              <span class="ico ico-jiajubaihuo">
+                <i class="iconfont icon-jiajubaihuo"></i>
+              </span>
+            </p>
+            <p class="sub">家居百货</p>
+          </a>
+        </div>
+        <div class="quick-entry">
+          <a href="">
+            <p>
+              <span class="ico ico-muyingyongpin">
+                <i class="iconfont icon-muyingyongpin"></i>
+              </span>
+            </p>
+            <p class="sub">母婴用品</p>
+          </a>
+        </div>
+      </div>
+      <div class="quick-entry-list">
+        <div class="quick-entry">
+          <a href="">
+            <p>
+              <span class="ico ico-jiushuiyinliao">
+                <i class="iconfont icon-jiushuiyinliao"></i>
+              </span>
+            </p>
+            <p class="sub">酒水饮料</p>
+          </a>
+        </div>
+        <div class="quick-entry">
+          <a href="">
+            <p>
+              <span class="ico ico-nvzhuang">
+                <i class="iconfont icon-nvzhuang"></i>
+              </span>
+            </p>
+            <p class="sub">女装</p>
+          </a>
+        </div>
+        <div class="quick-entry">
+          <a href="">
+            <p>
+              <span class="ico ico-xiangbao">
+                <i class="iconfont icon-xiangbao"></i>
+              </span>
+            </p>
+            <p class="sub">箱包</p>
+          </a>
+        </div>
+        <div class="quick-entry">
+          <a href="">
+            <p>
+              <span class="ico ico-huazhuangpin">
+                <i class="iconfont icon-huazhuangpin"></i>
+              </span>
+            </p>
+            <p class="sub">化妆品</p>
+          </a>
+        </div>
+        <div class="quick-entry">
+          <a href="">
+            <p>
+              <span class="ico ico-nanzhuang">
+                <i class="iconfont icon-nanzhuang"></i>
+              </span>
+            </p>
+            <p class="sub">男装</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="news">
+      <div class="news-item">
+        <span class="title">最新消息</span>
+        <span class="subject">最新消息最新消息最新消息最新消息最新消息最新消息最新消息最新消息</span>
+      </div>
+    </div>
+
+    <div class="product-list">
+      <div class="title">
+        <div class="vline"></div>
+        <p>
+          <span class="iconfont icon-remai"></span>
+          <span>热卖产品</span>
+        </p>
+        <div class="vline"></div>
+      </div>
+      <div class="products" *ngIf="products">
+        <div class="product" *ngFor="let product of let chunk of products.hotProducts">
+          <div class="prod-c">
+            <div class="prod-pic" [style.background-image]="product?.FirstImageUrl | backgroundUrl | unsafe"></div>
+            <div class="prod-title">{{ product?.Title }}</div>
+            <div class="prod-info">
+              <div class="prod-price">{{ product?.HMBAvailabilityPrice | yuan }}</div>
+              <div class="prod-sales" *ngIf="product?.sellNum">销量: {{ product?.sellNum }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-list">
+      <div class="title">
+        <div class="vline"></div>
+        <p>
+          <span class="iconfont icon-zuixin"></span>
+          <span>最新产品</span>
+        </p>
+        <div class="vline"></div>
+      </div>
+      <div class="products" *ngIf="products">
+        <div class="product" *ngFor="let product of let chunk of products.newProducts">
+          <div class="prod-c">
+            <div class="prod-pic" [style.background-image]="product?.FirstImageUrl | backgroundUrl | unsafe"></div>
+            <div class="prod-title">{{ product?.Title }}</div>
+            <div class="prod-info">
+              <div class="prod-price">{{ product?.HMBAvailabilityPrice | yuan }}</div>
+              <div class="prod-sales" *ngIf="product?.sellNum">销量: {{ product?.sellNum }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </v-content>

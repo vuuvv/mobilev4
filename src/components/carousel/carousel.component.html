@@ -1,0 +1,20 @@
+<div class="viewport">
+  <ul
+   [style.-webkit-transform]="position | translate3d"
+   [style.transform]="position | translate3d"
+   [class.transition]="inTransition"
+   [style.width]="containerWidth | px"
+   (panstart)="moveStart($event)"
+   (panend)="moveEnd($event)"
+   (pancancel)="moveCancel"
+   (panleft)="move($event)"
+   (panright)="move($event)"
+   (swipleft)="prev()"
+   (swipright)="next()">
+    <li *ngFor="let slider of config.sliders" [style.background-image]="slider | backgroundUrl" [style.width]="elWidth | px">
+    </li>
+  </ul>
+  <div class="indicator" *ngIf="config.showIndicator">
+    <span *ngFor="let slider of config.sliders; let i = index" [class.current]="i === index"></span>
+  </div>
+</div>
