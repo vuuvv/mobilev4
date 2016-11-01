@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 
 @Component({
   templateUrl: './notify.component.html',
   styleUrls: ['./notify.component.less'],
 })
-export class NotifyComponent {}
+export class NotifyComponent {
+}

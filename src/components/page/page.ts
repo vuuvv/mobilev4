@@ -1,4 +1,4 @@
-import { Directive, Component, Input, ViewEncapsulation, HostListener, HostBinding, OnInit, Type } from '@angular/core';
+import { Directive, Component, Input, ViewEncapsulation, HostListener, HostBinding, OnInit, AfterViewInit, OnDestroy, Type } from '@angular/core';
 
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
@@ -12,7 +12,8 @@ import 'rxjs/add/observable/of';
   styleUrls: ['./style.less', './page.less'],
   encapsulation: ViewEncapsulation.None,
 })
-export class Page {}
+export class Page {
+}
 
 @Component({
   selector: 'v-page v-content',
@@ -21,9 +22,28 @@ export class Page {}
   encapsulation: ViewEncapsulation.None,
   host: {
     '[class.page-content]': 'true',
+    '[class.slide-transition]': 'true',
+    '[class.slide-enter]': 'sliderEnter',
+    '[class.slide-leave]': 'sliderLeave',
   },
 })
-export class PageContent {}
+export class PageContent implements OnInit, AfterViewInit, OnDestroy {
+  sliderEnter: boolean = true;
+  sliderLeave: boolean = false;
+  ngOnInit() {
+    this.sliderEnter = true;
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.sliderEnter = false;
+    }, 0)
+  }
+
+  ngOnDestroy() {
+    this.sliderLeave = true;
+  }
+}
 
 @Component({
   selector: 'v-page v-header',
@@ -74,6 +94,8 @@ export class PageHeaderButton {
 @Component({
   selector: 'v-page v-footer',
   templateUrl: './footer.html',
+  styleUrls: ['./footer.less'],
+  encapsulation: ViewEncapsulation.None,
   host: {
     '[class.weui-tabbar]': 'true',
   },
@@ -83,11 +105,9 @@ export class PageFooter {}
 @Component({
   selector: 'v-page v-footer v-item',
   templateUrl: './footer-item.html',
-  styleUrls: ['./footer.less'],
   host: {
     '[class.weui-tabbar__item]': 'true'
   },
-  encapsulation: ViewEncapsulation.None,
 })
 export class PageFooterItem {
   @Input('icon') icon: string;
@@ -124,6 +144,28 @@ export class PageFooterItem {
 }
 
 @Directive({
+  selector: 'v-page v-footer v-button',
+  host: {
+    '[style.width]': 'width',
+    '[style.background]': 'background',
+    '[style.color]': 'color',
+  }
+})
+export class PageFooterButtonDirective {
+  @Input('width') width: string = '50%';
+  @Input('background') _background: string = '#f23030';
+  @Input('color') color: string = '#fff';
+
+  get background() {
+    if (this._background === 'yellow') {
+      return '#ffb03f'
+    } else {
+      return '#f23030';
+    }
+  }
+}
+
+@Directive({
   selector: '[v-back]',
 })
 export class HistoryBackDirective {
@@ -148,14 +190,25 @@ export class HomeDirective {
   }
 }
 
+@Component({
+  selector: 'v-empty-page',
+  templateUrl: './empty-page.component.html',
+  styleUrls: ['./empty-page.less'],
+})
+export class EmptyPageComponent {
+  @Input('title') title: string;
+}
+
 export const PAGE_COMPONENTS: Type<any>[] = [
   Page,
   PageFooter,
   PageFooterItem,
+  PageFooterButtonDirective,
   PageHeader,
   PageHeaderTitle,
   PageHeaderButton,
   PageContent,
   HistoryBackDirective,
   HomeDirective,
+  EmptyPageComponent,
 ]

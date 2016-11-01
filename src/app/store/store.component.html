@@ -1,0 +1,35 @@
+<v-page>
+  <v-footer>
+    <v-button background="yellow" [routerLink]="['signup']">注册店铺</v-button>
+    <v-button [routerLink]="['bind']">绑定店铺</v-button>
+  </v-footer>
+
+  <v-header title="店铺管理">
+    <v-btn class="left" v-back icon="back"></v-btn>
+    <v-btn class="right" v-home icon="home"></v-btn>
+  </v-header>
+  <v-content>
+    <div class="weui-form-preview" *ngFor="let store of stores">
+      <div class="weui-form-preview__hd">
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">{{ getPlatformChinaName(store.RetailPlatform) }}</label>
+        </div>
+      </div>
+      <div class="weui-form-preview__bd">
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">店铺名称</label>
+          <span class="weui-form-preview__value">{{ store.StoreName }}</span>
+        </div>
+        <div class="weui-form-preview__item">
+          <label class="weui-form-preview__label">店铺Id</label>
+          <span class="weui-form-preview__value">{{ store.StoreCode }}</span>
+        </div>
+      </div>
+      <div class="weui-form-preview__ft">
+        <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">重新授权</a>
+        <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">编辑</a>
+        <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">删除</a>
+      </div>
+    </div>
+  </v-content>
+</v-page>

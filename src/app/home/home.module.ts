@@ -6,8 +6,6 @@ import { OverlayModule, PageModule, DialogModule, CarouselModule, CoreModule } f
 
 import { SharedModule } from '../shared';
 
-import { UserModule } from '../user';
-
 import { NotifyModule } from '../notify';
 
 import { HomeLayoutComponent, HomeComponent } from './home.component';
@@ -29,7 +27,6 @@ import { homeRouting } from './home.routing';
     DialogModule,
     CarouselModule,
 
-    UserModule,
     NotifyModule,
 
     homeRouting,

@@ -1,0 +1,17 @@
+<v-page>
+  <v-header title="注册店铺">
+    <v-btn class="left" v-back icon="back"></v-btn>
+    <v-btn class="right" v-home icon="home"></v-btn>
+  </v-header>
+  <v-content>
+    <div class="weui-cells">
+      <a class="weui-cell weui-cell_access" href="{{ platform.Home }}" *ngFor="let platform of platforms">
+        <div class="weui-cell__bd">
+          <p>{{ platform.ChinaName }}</p>
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+      </a>
+    </div>
+  </v-content>
+</v-page>

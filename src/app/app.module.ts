@@ -9,6 +9,8 @@ import { CoreModule, OverlayModule, DialogModule, PageModule, CarouselModule } f
 import { HomeModule } from './home';
 import { ProductModule } from './product';
 import { LoginModule } from './login';
+import { StoreModule } from './store';
+import { AccountModule } from './account';
 import { SharedModule } from './shared';
 
 import { AppComponent } from './app.component';
@@ -32,6 +34,8 @@ import { routing } from './app.routing';
     HomeModule,
     ProductModule,
     LoginModule,
+    StoreModule,
+    AccountModule,
 
     CoreModule.forRoot(),
     OverlayModule.forRoot(),

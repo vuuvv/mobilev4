@@ -5,6 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class BackgroundUrlPipe implements PipeTransform {
   transform(value: string) {
+    if (!value) {
+      return 'none';
+    }
     return `url(${value})`;
   }
 }

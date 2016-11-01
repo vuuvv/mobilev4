@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 
 import { Http } from './http';
 
-import { User } from './models';
+import { User } from '../models';
 
 export class Login {
   username: string;

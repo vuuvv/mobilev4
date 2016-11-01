@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http as RawHttp, Response, Headers, RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 
-import { DialogService } from '../../components';
+import { DialogService } from '../../../components';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';

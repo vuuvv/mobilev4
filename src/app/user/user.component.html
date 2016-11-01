@@ -1,197 +1,215 @@
-<v-header title="我的">
-  <v-btn class="left" v-back icon="back"></v-btn>
-  <v-btn class="right" v-home icon="home"></v-btn>
-</v-header>
-<v-content>
-  <div class="weui-cells">
-    <a class="weui-cell origin weui-cell_access" [routerLink]="">
-      <div class="weui-cell__hd">
-        <div class="avatar">
-          <img src="//gw.alicdn.com/tps/i3/TB1yeWeIFXXXXX5XFXXuAZJYXXX-210-210.png_160x160.jpg">
+<v-page>
+  <v-header title="我的">
+    <v-btn class="left" v-back icon="back"></v-btn>
+    <v-btn class="right" v-home icon="home"></v-btn>
+  </v-header>
+  <v-content>
+    <div class="weui-cells">
+      <a class="weui-cell origin weui-cell_access" [routerLink]="['setting']">
+        <div class="weui-cell__hd">
+          <div class="avatar">
+            <img src="//gw.alicdn.com/tps/i3/TB1yeWeIFXXXXX5XFXXuAZJYXXX-210-210.png_160x160.jpg">
+          </div>
         </div>
-      </div>
-      <div class="weui-cell__bd">
-        <div>
-          <p class="username">{{ user.user.NickName }}</p>
-          <p class="usercode">{{ user.user.UserCode }}</p>
+        <div class="weui-cell__bd">
+          <div>
+            <p class="username">{{ user.user.NickName }}</p>
+            <p class="usercode">{{ user.user.UserCode }}</p>
+          </div>
         </div>
-      </div>
-      <div class="weui-cell__ft">
-      </div>
-    </a>
-  </div>
+        <div class="weui-cell__ft">
+        </div>
+      </a>
+    </div>
 
-  <div class="weui-panel weui-panel_access order-panel">
-    <div class="weui-panel__hd">
-      <a class="weui-cell weui-cell_access" [routerLink]="">
+    <div class="weui-panel weui-panel_access order-panel">
+      <div class="weui-panel__hd">
+        <a class="weui-cell weui-cell_access" [routerLink]="">
+          <div class="weui-cell__hd">
+            <div class="ico">
+              <div class="ico-cont ico-form">
+              <i class="iconfont icon-form"></i>
+              </div>
+            </div>
+          </div>
+          <div class="weui-cell__bd">
+            <p>我的订单</p>
+          </div>
+          <div class="weui-cell__ft">
+            <p>查看全部订单</p>
+          </div>
+        </a>
+      </div>
+      <div class="weui-panel__bd">
+        <div class="order-act">
+          <div class="order-act-item">
+            <a [routerLink]="['/']">
+              <p>
+                <span class="iconfont icon-pay"></span>
+              </p>
+              <p class="sub">待付款</p>
+            </a>
+          </div>
+          <div class="order-act-item">
+            <a [routerLink]="['/']">
+              <p>
+                <span class="iconfont icon-send"></span>
+              </p>
+              <p class="sub">待发货</p>
+            </a>
+          </div>
+          <div class="order-act-item">
+            <a [routerLink]="['/']">
+              <p>
+                <span class="iconfont icon-deliver"></span>
+              </p>
+              <p class="sub">待收货</p>
+            </a>
+          </div>
+          <div class="order-act-item">
+            <a [routerLink]="['/']">
+              <p>
+                <span class="iconfont icon-evaluate"></span>
+              </p>
+              <p class="sub">待评价</p>
+            </a>
+          </div>
+          <div class="order-act-item">
+            <a [routerLink]="['/']">
+              <p>
+                <span class="iconfont icon-refund"></span>
+              </p>
+              <p class="sub">已退款</p>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="weui-cells">
+      <a class="weui-cell weui-cell_access" [routerLink]="['qr']">
         <div class="weui-cell__hd">
           <div class="ico">
-            <div class="ico-cont ico-form">
-            <i class="iconfont icon-form"></i>
+            <div class="ico-cont ico-qr">
+            <i class="iconfont icon-qr"></i>
             </div>
           </div>
         </div>
         <div class="weui-cell__bd">
-          <p>我的订单</p>
+          <p>个人二维码</p>
         </div>
         <div class="weui-cell__ft">
-          <p>查看全部订单</p>
+        </div>
+      </a>
+      <a class="weui-cell weui-cell_access" [routerLink]="['/store']">
+        <div class="weui-cell__hd">
+          <div class="ico">
+            <div class="ico-cont ico-store">
+            <i class="iconfont icon-store"></i>
+            </div>
+          </div>
+        </div>
+        <div class="weui-cell__bd">
+          <p>店铺管理</p>
+        </div>
+        <div class="weui-cell__ft">
+          <p>已授权{{ user.stores.length }}个店铺</p>
+        </div>
+      </a>
+      <a class="weui-cell weui-cell_access" [routerLink]="['/account']">
+        <div class="weui-cell__hd">
+          <div class="ico">
+            <div class="ico-cont ico-fund">
+            <i class="iconfont icon-fund"></i>
+            </div>
+          </div>
+        </div>
+        <div class="weui-cell__bd">
+          <p>资金管理</p>
+        </div>
+        <div class="weui-cell__ft">
+          <p>{{ balance() | yuan }}</p>
         </div>
       </a>
     </div>
-    <div class="weui-panel__bd">
-      <div class="order-act">
-        <div class="order-act-item">
-          <a [routerLink]="['/']">
-            <p>
-              <span class="iconfont icon-pay"></span>
-            </p>
-            <p class="sub">待付款</p>
-          </a>
+    <div class="weui-cells">
+      <a class="weui-cell weui-cell_access" [routerLink]="">
+        <div class="weui-cell__hd">
+          <div class="ico">
+            <div class="ico-cont ico-service">
+            <i class="iconfont icon-service"></i>
+            </div>
+          </div>
         </div>
-        <div class="order-act-item">
-          <a [routerLink]="['/']">
-            <p>
-              <span class="iconfont icon-send"></span>
-            </p>
-            <p class="sub">待发货</p>
-          </a>
+        <div class="weui-cell__bd">
+          <p>客服</p>
         </div>
-        <div class="order-act-item">
-          <a [routerLink]="['/']">
-            <p>
-              <span class="iconfont icon-deliver"></span>
-            </p>
-            <p class="sub">待收货</p>
-          </a>
+        <div class="weui-cell__ft">
         </div>
-        <div class="order-act-item">
-          <a [routerLink]="['/']">
-            <p>
-              <span class="iconfont icon-evaluate"></span>
-            </p>
-            <p class="sub">待评价</p>
-          </a>
+      </a>
+      <a class="weui-cell weui-cell_access" [routerLink]="">
+        <div class="weui-cell__hd">
+          <div class="ico">
+            <div class="ico-cont ico-help">
+            <i class="iconfont icon-help"></i>
+            </div>
+          </div>
         </div>
-        <div class="order-act-item">
-          <a [routerLink]="['/']">
-            <p>
-              <span class="iconfont icon-refund"></span>
-            </p>
-            <p class="sub">已退款</p>
-          </a>
+        <div class="weui-cell__bd">
+          <p>帮助中心</p>
         </div>
-
-      </div>
+        <div class="weui-cell__ft">
+        </div>
+      </a>
     </div>
-  </div>
-
-  <div class="weui-cells">
-    <a class="weui-cell weui-cell_access" [routerLink]="">
-      <div class="weui-cell__hd">
-        <div class="ico">
-          <div class="ico-cont ico-qr">
-          <i class="iconfont icon-qr"></i>
+    <div class="weui-cells">
+      <a class="weui-cell weui-cell_access" [routerLink]="['setting']">
+        <div class="weui-cell__hd">
+          <div class="ico">
+            <div class="ico-cont ico-settings">
+              <i class="iconfont icon-settings"></i>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="weui-cell__bd">
-        <p>个人二维码</p>
-      </div>
-      <div class="weui-cell__ft">
-      </div>
-    </a>
-    <a class="weui-cell weui-cell_access" [routerLink]="">
-      <div class="weui-cell__hd">
-        <div class="ico">
-          <div class="ico-cont ico-store">
-          <i class="iconfont icon-store"></i>
+        <div class="weui-cell__bd">
+          <p>设置</p>
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+      </a>
+    </div>
+    <div class="weui-cells">
+      <a class="weui-cell weui-cell_access" [routerLink]="['/login']">
+        <div class="weui-cell__hd">
+          <div class="ico">
+            <div class="ico-cont ico-change">
+              <i class="iconfont icon-change"></i>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="weui-cell__bd">
-        <p>店铺管理</p>
-      </div>
-      <div class="weui-cell__ft">
-        <p>已授权{{ user.stores.length }}个店铺</p>
-      </div>
-    </a>
-    <a class="weui-cell weui-cell_access" [routerLink]="">
-      <div class="weui-cell__hd">
-        <div class="ico">
-          <div class="ico-cont ico-fund">
-          <i class="iconfont icon-fund"></i>
+        <div class="weui-cell__bd">
+          <p>切换帐号</p>
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+      </a>
+    </div>
+    <div class="weui-cells">
+      <a class="weui-cell weui-cell_access" (click)="logout()">
+        <div class="weui-cell__hd">
+          <div class="ico">
+            <div class="ico-cont ico-quit">
+              <i class="iconfont icon-quit"></i>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="weui-cell__bd">
-        <p>资金管理</p>
-      </div>
-      <div class="weui-cell__ft">
-        <p>{{ balance() | yuan }}</p>
-      </div>
-    </a>
-  </div>
-  <div class="weui-cells">
-    <a class="weui-cell weui-cell_access" [routerLink]="">
-      <div class="weui-cell__hd">
-        <div class="ico">
-          <div class="ico-cont ico-service">
-          <i class="iconfont icon-service"></i>
-          </div>
+        <div class="weui-cell__bd">
+          <p>退出</p>
         </div>
-      </div>
-      <div class="weui-cell__bd">
-        <p>客服</p>
-      </div>
-      <div class="weui-cell__ft">
-      </div>
-    </a>
-    <a class="weui-cell weui-cell_access" [routerLink]="">
-      <div class="weui-cell__hd">
-        <div class="ico">
-          <div class="ico-cont ico-help">
-          <i class="iconfont icon-help"></i>
-          </div>
+        <div class="weui-cell__ft">
         </div>
-      </div>
-      <div class="weui-cell__bd">
-        <p>帮助中心</p>
-      </div>
-      <div class="weui-cell__ft">
-      </div>
-    </a>
-  </div>
-  <div class="weui-cells">
-    <a class="weui-cell weui-cell_access" [routerLink]="">
-      <div class="weui-cell__hd">
-        <div class="ico">
-          <div class="ico-cont ico-settings">
-            <i class="iconfont icon-settings"></i>
-          </div>
-        </div>
-      </div>
-      <div class="weui-cell__bd">
-        <p>设置</p>
-      </div>
-      <div class="weui-cell__ft">
-      </div>
-    </a>
-  </div>
-  <div class="weui-cells">
-    <a class="weui-cell weui-cell_access" (click)="logout()">
-      <div class="weui-cell__hd">
-        <div class="ico">
-          <div class="ico-cont ico-quit">
-            <i class="iconfont icon-quit"></i>
-          </div>
-        </div>
-      </div>
-      <div class="weui-cell__bd">
-        <p>退出</p>
-      </div>
-      <div class="weui-cell__ft">
-      </div>
-    </a>
-  </div>
-</v-content>
+      </a>
+    </div>
+  </v-content>
+</v-page>

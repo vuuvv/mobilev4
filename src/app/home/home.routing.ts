@@ -3,17 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeLayoutComponent, HomeComponent } from './home.component';
 
-import { UserComponent } from '../user';
 import { NotifyComponent } from '../notify';
 
 import { AuthorizeGuard } from '../shared';
-
-const userRoutes: Routes = [
-  {
-    path: 'user',
-    loadChildren: 'app/user/user.module#UserModule',
-  }
-];
 
 const homeRoutes: Routes = [
   {
@@ -29,7 +21,10 @@ const homeRoutes: Routes = [
         path: '',
         component: HomeComponent,
       },
-      ...userRoutes,
+      {
+        path: 'user',
+        loadChildren: 'app/user/user.module#UserModule',
+      },
       {
         path: 'notify',
         canActivate: [AuthorizeGuard],

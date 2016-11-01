@@ -1,0 +1,22 @@
+<v-page>
+  <v-footer>
+    <v-button [routerLink]="" width="100%">充值</v-button>
+  </v-footer>
+
+  <v-header title="店铺管理">
+    <v-btn class="left" v-back icon="back"></v-btn>
+    <v-btn class="right" v-home icon="home"></v-btn>
+  </v-header>
+  <v-content>
+    <div class="weui-cells">
+      <a class="weui-cell" *ngFor="let account of accounts">
+        <div class="weui-cell__bd">
+          <p>{{ account.Label }}</p>
+        </div>
+        <div class="weui-cell__ft">
+          <p> {{ account.Balance | yuan }}</p>
+        </div>
+      </a>
+    </div>
+  </v-content>
+</v-page>
