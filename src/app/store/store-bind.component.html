@@ -5,7 +5,7 @@
   </v-header>
   <v-content>
     <div class="weui-cells">
-      <a class="weui-cell weui-cell_access" href="/mo/store/bind/{{platform.Name}}" *ngFor="let platform of platforms">
+      <a class="weui-cell weui-cell_access" href="{{ storeService.getAuthorizeUrl(platform.Name) }}" *ngFor="let platform of platforms">
         <div class="weui-cell__bd">
           <p>{{ platform.ChinaName }}</p>
         </div>

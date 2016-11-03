@@ -48,6 +48,8 @@ export class OverlayComponent implements OnInit {
 export class Overlay implements OnInit {
   private overlayConfigs: OverlayConfig[] = [];
 
+  showToast: boolean = false;
+
   constructor(private overlayService: OverlayService) {
   }
 
@@ -67,6 +69,21 @@ export class Overlay implements OnInit {
         this.overlayConfigs = [];
       }
     });
+
+    this.overlayService.getToastEvent().subscribe((config) => {
+      this.showToast = true;
+      setTimeout(() => {
+        this.showToast = false;
+      }, config.duration)
+    })
+  }
+
+  get toastBlock(): string {
+    if (this.showToast) {
+      return 'block';
+    } else {
+      return 'none';
+    }
   }
 }
 

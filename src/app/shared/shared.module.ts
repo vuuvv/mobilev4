@@ -4,7 +4,7 @@ import { Http as RawHttp } from '@angular/http';
 
 import { DialogModule } from '../../components';
 
-import { Http, AuthorizeGuard, AuthorizeService, StoreService, AccountService } from './services';
+import { Http, AuthorizeGuard, AuthorizeService, StoreService, AccountService, EscapedUrlSerializerProvider } from './services';
 
 @NgModule({
   imports: [

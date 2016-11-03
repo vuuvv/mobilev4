@@ -30,11 +30,11 @@ export class AuthorizeService {
     this.user = user;
 
     let redirect = this.redirectUrl ? this.redirectUrl : '/home/user';
-    let navigationExtras: NavigationExtras = {
-      preserveFragment: true,
-      preserveQueryParams: true,
-    };
-    this.router.navigate([redirect], navigationExtras);
+    // let navigationExtras: NavigationExtras = {
+    //   preserveFragment: true,
+    //   preserveQueryParams: true,
+    // };
+    this.router.navigateByUrl(redirect);
 
     return user;
   }

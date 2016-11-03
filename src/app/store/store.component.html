@@ -26,9 +26,9 @@
         </div>
       </div>
       <div class="weui-form-preview__ft">
-        <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">重新授权</a>
-        <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="javascript:">编辑</a>
-        <a class="weui-form-preview__btn weui-form-preview__btn_default" href="javascript:">删除</a>
+        <a class="weui-form-preview__btn weui-form-preview__btn_primary" href="{{storeService.getAuthorizeUrl(store.RetailPlatform)}}">重新授权</a>
+        <a class="weui-form-preview__btn weui-form-preview__btn_primary" [routerLink]="['edit', store.Id]">编辑</a>
+        <a class="weui-form-preview__btn weui-form-preview__btn_default" (click)="delete(store.Id)">删除</a>
       </div>
     </div>
   </v-content>

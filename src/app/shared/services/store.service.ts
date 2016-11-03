@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 
-import { Http } from './http';
+import { Http, buildUrl } from './http';
 
 import { StoresInfo, Platform } from '../models';
 
@@ -24,5 +24,9 @@ export class StoreService {
     return this.getPlatforms().map((platforms: Platform[]) => {
       return platforms.filter((value: Platform) => value.Visible)
     });
+  }
+
+  getAuthorizeUrl(platform: string) :string {
+    return buildUrl(`/mo/store/bind/${platform}`);
   }
 }

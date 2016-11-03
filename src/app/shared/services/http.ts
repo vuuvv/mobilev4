@@ -26,7 +26,7 @@ export function buildQueryString(data: any) {
   return Object.keys(data).map(key => `${key}=${encodeURIComponent(data[key])}`).join('&');
 }
 
-export function buildUrl(url: string, data: any, noCache=true) {
+export function buildUrl(url: string, data: any = null, noCache=true) {
   url = fixUrl(url);
   if (!data) {
     return url;

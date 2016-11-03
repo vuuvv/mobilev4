@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Platform, StoreService } from '../shared';
+import { Platform, StoreService, buildUrl } from '../shared';
 
 @Component({
   templateUrl: './store-bind.component.html',
@@ -14,8 +14,11 @@ export class StoreBindComponent implements OnInit {
 
    ngOnInit() {
     this.storeService.getVisiblePlatforms().subscribe((value: Platform[]) => {
-      console.log(value);
       this.platforms = value;
     });
+   }
+
+   getAuthorizeUrl(platform: string) :string {
+     return buildUrl(`/mo/store/bind/${platform}`);
    }
 }
