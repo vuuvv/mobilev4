@@ -4,3 +4,7 @@ export * from './user-info';
 export * from './store';
 export * from './stores-info';
 export * from './platform';
+export * from './area';
+export * from './category';
+export * from './tree';
+export * from './product';

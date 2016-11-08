@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit {
       showIndicator: true,
     }
 
-    this.http.get<any>('/mo/products').subscribe((value) => {
+    this.http.get<any>('/mo/home-products').subscribe((value) => {
       this.products = {
         hotProducts: value.hotProducts,
         newProducts: value.newProducts,

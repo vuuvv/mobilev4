@@ -1,0 +1,21 @@
+<v-page>
+  <v-header title="更改名字">
+    <v-btn class="left" v-back icon="back"></v-btn>
+    <v-btn class="right" v-home icon="home"></v-btn>
+  </v-header>
+  <v-content>
+    <form (ngSubmit)="submit()" #form="ngForm">
+      <div class="weui-cells">
+        <div class="weui-cell">
+          <div class="weui-cell__hd"><label class="weui-label">昵称</label></div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" type="text" name="NickName" required [(ngModel)]="user.NickName" placeholder="请输入您的昵称">
+          </div>
+        </div>
+      </div>
+      <div class="weui-btn-area">
+        <button type="submit" class="weui-btn weui-btn_warn" [disabled]="form.invalid" [class.weui-btn_disabled]="form.invalid">确定</button>
+      </div>
+    </form>
+  </v-content>
+</v-page>

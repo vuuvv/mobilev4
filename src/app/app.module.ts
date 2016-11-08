@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -8,6 +9,7 @@ import { CoreModule, OverlayModule, DialogModule, PageModule, CarouselModule } f
 
 import { HomeModule } from './home';
 import { ProductModule } from './product';
+import { OrderModule } from './order';
 import { LoginModule } from './login';
 import { StoreModule } from './store';
 import { AccountModule } from './account';
@@ -16,6 +18,14 @@ import { SharedModule } from './shared';
 import { AppComponent } from './app.component';
 
 import { routing } from './app.routing';
+
+export class MyHammerConfig extends HammerGestureConfig  {
+  overrides = <any>{
+      'swipe': { direction: window["Hammer"].DIRECTION_VERTICAL },
+      'pinch': { enable: false },
+      'rotate': { enable: false},
+  }
+}
 
 @NgModule({
   declarations: [
@@ -33,6 +43,7 @@ import { routing } from './app.routing';
 
     HomeModule,
     ProductModule,
+    OrderModule,
     LoginModule,
     StoreModule,
     AccountModule,
@@ -43,7 +54,12 @@ import { routing } from './app.routing';
     DialogModule.forRoot(),
     CarouselModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

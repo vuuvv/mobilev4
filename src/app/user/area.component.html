@@ -1,0 +1,27 @@
+<v-page>
+  <v-header title="选择地区">
+    <v-btn class="left" v-back icon="back"></v-btn>
+    <v-btn class="right" v-home icon="home"></v-btn>
+  </v-header>
+  <v-content>
+    <div class="weui-cells" *ngIf="current">
+      <a class="weui-cell weui-cell_access" (click)="action(current, true)">
+        <div class="weui-cell__bd">
+          <p>{{ current.Name }}</p>
+        </div>
+        <div class="weui-cell__ft">
+          <p>已选地区</p>
+        </div>
+      </a>
+    </div>
+    <div class="weui-cells">
+      <a class="weui-cell weui-cell_access" (click)="action(area)" *ngFor="let area of areas">
+        <div class="weui-cell__bd">
+          <p>{{ area.Name }}</p>
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+      </a>
+    </div>
+  </v-content>
+</v-page>

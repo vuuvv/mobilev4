@@ -27,9 +27,7 @@ export class LoginComponent implements OnInit {
 
   submit() {
     this.authorize.login(this.login).subscribe(
-      (data) => {
-        console.log(data);
-      },
+      (data) => {},
       (err) => {
         this.refreshCaptcha();
       }

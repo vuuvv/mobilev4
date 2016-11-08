@@ -5,3 +5,4 @@ export * from './unsafe.pipe';
 export * from './repeat.pipe';
 export * from './unit.pipe';
 export * from './yuan.pipe';
+export * from './gender.pipe';

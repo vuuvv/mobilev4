@@ -1,0 +1,48 @@
+v-header {
+  display: flex;
+
+  .top-nav {
+    flex: 1;
+    overflow: hidden;
+    margin: 0 8px;
+  }
+
+  .categories {
+    height: 100%;
+    white-space: nowrap;
+    width: 10000px;
+    a {
+      color: #fff;
+      float: left;
+      height: 100%;
+      font-size: 0.85rem;
+      line-height: 2.2rem;
+      padding: 0 5px;
+    }
+  }
+}
+
+v-page v-content {
+  background: #fff;
+}
+
+.search {
+  box-sizing: border-box;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: #BBB;
+  background-color: #FFF;
+  position: fixed;
+  z-index: 9;
+  border-radius: 20px;
+  border: 1px solid #CCC;
+  right: 8px;
+  bottom: 118px;
+  transform: translateZ(9px);
+
+  .iconfont {
+    font-size: 18px;
+  }
+}

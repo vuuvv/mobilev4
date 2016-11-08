@@ -1,0 +1,51 @@
+<v-page>
+  <v-header>
+    <v-btn class="left" v-back icon="back"></v-btn>
+    <div class="searchinput">
+      <input type="text" autocomplete="off" placeholder="搜索商品/种类/编码" v-debounce [delay]="2000" (valueChanged)="search()">
+      <i class="iconfont icon-search" ></i>
+    </div>
+    <v-btn class="right" v-home label="分类"></v-btn>
+  </v-header>
+  <v-content>
+    <div class="main-box">
+      <nav class="class-list-nav">
+        <ul>
+          <li *ngFor="let root of categories">
+            <a (click)="active(root); classList.reset()">
+              {{ root.value.Name }}
+            </a>
+          </li>
+        </ul>
+        <ul class="remain">
+          <li></li>
+        </ul>
+      </nav>
+      <div class="class-content">
+        <div class="class-content-wrap" #classList=touchDrag v-touch-drag direction="vertical">
+          <div class="class-list">
+            <div class="class-box" *ngFor="let c2 of current?.children">
+              <h4>{{ c2.value.Name }}</h4>
+              <ul class="clearfix">
+                <li>
+                  <div>
+                    <a href="">
+                      <span>全部</span>
+                    </a>
+                  </div>
+                </li>
+                <li *ngFor="let c3 of c2.children">
+                  <div>
+                    <a href="">
+                      <span>{{ c3.value.Name}}</span>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </v-content>
+</v-page>

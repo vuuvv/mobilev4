@@ -26,16 +26,8 @@ export class AuthorizeService {
   }
 
   private doLogin(user: User): User {
-    this.isLoggedIn = true
-    this.user = user;
-
     let redirect = this.redirectUrl ? this.redirectUrl : '/home/user';
-    // let navigationExtras: NavigationExtras = {
-    //   preserveFragment: true,
-    //   preserveQueryParams: true,
-    // };
     this.router.navigateByUrl(redirect);
-
     return user;
   }
 
@@ -50,11 +42,19 @@ export class AuthorizeService {
     });
   }
 
+  update(): Observable<User> {
+    return this.http.get<User>('mo/me', undefined, undefined, undefined, 'none').map((user: User) => {
+      this.isLoggedIn = true
+      this.user = user;
+      return user;
+    });
+  }
+
   checkLogin(): Observable<boolean> {
     if (this.isLoggedIn) {
       return Observable.of(true);
     }
-    return this.http.get<User>('mo/me', undefined, undefined, undefined, 'none').map((user: User) => {
+    return this.update().map((user: User) => {
       this.doLogin(user);
       return true;
     });

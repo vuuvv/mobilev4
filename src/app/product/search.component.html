@@ -1,0 +1,19 @@
+<v-page>
+  <v-header>
+    <v-btn class="left" v-back icon="back"></v-btn>
+    <div class="searchinput">
+      <input type="text" autocomplete="off" placeholder="搜索商品/种类/编码" v-debounce [delay]="2000" (valueChanged)="search()">
+      <i class="iconfont icon-search" ></i>
+    </div>
+    <v-btn class="right" label="分类" [routerLink]="['/product/category']"></v-btn>
+  </v-header>
+  <v-content
+      infinite-scroll
+      [scrollWindow]="false"
+      [infiniteScrollDistance]="1.5"
+      [infiniteScrollThrottle]="10"
+      (scrolled)="onScrollDown()">
+    <product-list-item *ngFor="let product of products" [product]="product"></product-list-item>
+  </v-content>
+  <v-gotop bottom="15"></v-gotop>
+</v-page>

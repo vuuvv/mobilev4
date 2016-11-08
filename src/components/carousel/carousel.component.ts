@@ -50,14 +50,6 @@ export class CarouselComponent implements OnInit, OnDestroy {
     this.resetTimer();
   }
 
-  backgroundUrl(url): string {
-    return `url(${url})`;
-  }
-
-  translate3d(x = 0, y = 0, z = 0): string {
-    return `translate3d(${x}px,${y}px,${z}px)`;
-  }
-
   private getIndexOfPosition(position: number): number {
     return parseInt(-position/this.elWidth + '');
   }

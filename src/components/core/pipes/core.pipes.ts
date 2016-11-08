@@ -5,6 +5,7 @@ import { UnSafePipe } from './unsafe.pipe';
 import { RepeatPipe } from './repeat.pipe';
 import { UnitPipe, PxPipe } from './unit.pipe';
 import { YuanPipe } from './yuan.pipe';
+import { GenderPipe } from './gender.pipe';
 
 export const CORE_PIPES: Type<any>[] = [
   BackgroundUrlPipe,
@@ -14,4 +15,5 @@ export const CORE_PIPES: Type<any>[] = [
   UnitPipe,
   PxPipe,
   YuanPipe,
+  GenderPipe,
 ];
