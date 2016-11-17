@@ -1,26 +1,26 @@
 <div class="item">
-  <a [routerLink]="['/product/detail']" class="item-url">
+  <a (click)="open()" class="item-url">
     <div class="pic-wrapper">
-      <img alt="" class="img" src="{{ product.image }}">
+      <img alt="" class="img" src="{{ product.firstImageUrl }}">
     </div>
     <div class="desc-wrapper">
       <div class="text-wrapper">
         <div class="title ">
-          {{ product.title }}
+          {{ product.item_name }}
         </div>
         <div class="recommend">
-          <span class="reason">外观比较时尚，功能也蛮多的，感觉还是比较值得，比国内便宜多了，挺实用的哦，戴着特洋气！！</span>
+          <span class="reason">{{ product.item_name }}</span>
         </div>
       </div>
       <div class="price-wrapper">
-        <span class="price">{{ product.price | yuan }}</span>
+        <span class="price">{{ product.balancePrice | yuan }}</span>
       </div>
     </div>
   </a>
   <div class="action-wrapper">
     <span class="fav-btn" (click)="select()" [class.selected]="selected">
       <span class="iconfont" [class.icon-xuanshou]="selected" [class.icon-weixuanshou]="!selected"></span>
-      <span class="fav-num">{{ product.sales }}</span>
+      <span class="fav-num">{{ product.selectNum }}</span>
       <span class="fav-txt">人选售</span>
     </span>
   </div>

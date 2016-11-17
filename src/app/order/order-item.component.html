@@ -1,0 +1,19 @@
+<div class="item">
+  <div class="item-cont">
+    <div class="item-img">
+      <p>
+        <img src="{{ orderItem.image | unsafe }}" alt="">
+      </p>
+    </div>
+    <div class="item-info">
+      <div class="title">{{ orderItem.title }}</div>
+      <div class="sku">套餐类型:{{ orderItem.sku }}</div>
+    </div>
+    <div class="item-pay">
+      <div class="item-pay-data">
+        <p class="price">{{ orderItem.price | yuan }}</p>
+        <p class="num">x{{ orderItem.count }}</p>
+      </div>
+    </div>
+  </div>
+</div>

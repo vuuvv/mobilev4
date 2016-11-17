@@ -157,10 +157,15 @@ export class PageFooterButtonDirective {
   @Input('color') color: string = '#fff';
 
   get background() {
-    if (this._background === 'yellow') {
-      return '#ffb03f'
-    } else {
-      return '#f23030';
+    switch(this._background) {
+      case 'yellow':
+        return '#ffb03f';
+      case 'grey':
+      case 'gray':
+        return '#999';
+      default:
+        // red
+        return '#f23030';
     }
   }
 }

@@ -6,3 +6,5 @@ export * from './repeat.pipe';
 export * from './unit.pipe';
 export * from './yuan.pipe';
 export * from './gender.pipe';
+export * from './split.pipe';
+export * from './first.pipe';

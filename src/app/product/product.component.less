@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 v-header {
   display: flex;
 
@@ -15,11 +19,15 @@ v-header {
       color: #fff;
       float: left;
       height: 100%;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       line-height: 2.2rem;
       padding: 0 5px;
     }
   }
+}
+
+.category-container {
+  padding-right: 0;
 }
 
 v-page v-content {
@@ -45,4 +53,10 @@ v-page v-content {
   .iconfont {
     font-size: 18px;
   }
+}
+
+v-float-btn {
+  position: fixed;
+  bottom: 3.2rem;
+  right: .5rem;
 }

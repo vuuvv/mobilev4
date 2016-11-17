@@ -124,7 +124,7 @@
         <div class="vline"></div>
       </div>
       <div class="products" *ngIf="products">
-        <div class="product" *ngFor="let product of let chunk of products.hotProducts">
+        <div class="product" *ngFor="let product of products.hotProducts" [routerLink]="['/product/home/detail', {product: product?.HMBSpuCode}]">
           <div class="prod-c">
             <div class="prod-pic" [style.background-image]="product?.FirstImageUrl | backgroundUrl | unsafe"></div>
             <div class="prod-title">{{ product?.Title }}</div>
@@ -147,7 +147,7 @@
         <div class="vline"></div>
       </div>
       <div class="products" *ngIf="products">
-        <div class="product" *ngFor="let product of let chunk of products.newProducts">
+        <div class="product" *ngFor="let product of products.newProducts" [routerLink]="['/product/home/detail', {product: product?.HMBSpuCode}]">
           <div class="prod-c">
             <div class="prod-pic" [style.background-image]="product?.FirstImageUrl | backgroundUrl | unsafe"></div>
             <div class="prod-title">{{ product?.Title }}</div>

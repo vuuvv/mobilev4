@@ -23,7 +23,7 @@ function fixUrl(url: string): string {
 export function buildQueryString(data: any) {
   if (!data)
     return '';
-  return Object.keys(data).map(key => `${key}=${encodeURIComponent(data[key])}`).join('&');
+  return Object.keys(data).filter((value) => !!data[value]).map(key => `${key}=${encodeURIComponent(data[key])}`).join('&');
 }
 
 export function buildUrl(url: string, data: any = null, noCache=true) {

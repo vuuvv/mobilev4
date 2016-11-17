@@ -1,0 +1,43 @@
+<v-page>
+  <v-footer>
+    <v-button [background]="publishButtonColor" (click)="submit()" width="100%">{{ productService.canPublish(product) ? '提交' : '已上架'}}</v-button>
+  </v-footer>
+  <v-content>
+    <div class="item-info">
+      <div class="item-show" [style.background-image]="product?.imgurls | split | first | backgroundUrl | unsafe">
+      </div>
+      <div class="item-name">{{ getTitle(product) }}</div>
+
+      <div class="item-price-wrap">
+        <p class="item-price-control">
+          <span>供货价：</span>
+          <span class="item-price" >{{ product?.balancePrice | yuan }}</span>
+        </p>
+      </div>
+      <div class="inner-back" v-back></div>
+    </div>
+
+    <v-collapsable [title]="'SKU属性(' + product?.hmbspucode + ')'" [hasContent]="product?.skuList?.length">
+      <div class="weui-media-box weui-media-box_small-appmsg">
+        <div class="weui-cells">
+          <div class="weui-cell" *ngFor="let sku of product?.skuList">
+            <div class="weui-cell__bd"><p>{{ sku.title }}</p></div>
+            <div class="weui-cell__ft"><p>{{ sku.hmbskucode }}</p></div>
+          </div>
+        </div>
+      </div>
+    </v-collapsable>
+
+    <v-collapsable title="运费" *ngIf="product?.shipStr" [collapsed]="true">
+      <div class="weui-media-box weui-media-box_text" [innerHTML]="product?.shipStr">
+      </div>
+    </v-collapsable>
+
+    <v-collapsable title="商品详情">
+      <div class="weui-media-box weui-media-box_text">
+        <div [innerHTML]="getDesc(product)"></div>
+        <img src="{{ image }}" *ngFor="let image of product?.imgurls | split: ';'" width="100%">
+      </div>
+    </v-collapsable>
+  </v-content>
+</v-page>

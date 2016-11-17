@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./gotop.less'],
 })
 export class GotopComponent {
-  @Input('bottom') bottom: number = 68;
+  @Input('bottom') bottom: string = "68px";
 }

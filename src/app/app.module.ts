@@ -21,7 +21,8 @@ import { routing } from './app.routing';
 
 export class MyHammerConfig extends HammerGestureConfig  {
   overrides = <any>{
-      'swipe': { direction: window["Hammer"].DIRECTION_VERTICAL },
+      'swipe': { direction: window["Hammer"].DIRECTION_ALL },
+      'pan': { direction: window["Hammer"].DIRECTION_ALL },
       'pinch': { enable: false },
       'rotate': { enable: false},
   }

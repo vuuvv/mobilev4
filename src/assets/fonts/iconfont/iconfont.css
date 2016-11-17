@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1478477709058'); /* IE9*/
-  src: url('iconfont.eot?t=1478477709058#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1478477709058') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1478477709058') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1478477709058#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1479352649075'); /* IE9*/
+  src: url('iconfont.eot?t=1479352649075#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1479352649075') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1479352649075') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1479352649075#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -30,13 +30,19 @@
 
 .icon-help:before { content: "\e608"; }
 
+.icon-down:before { content: "\e62c"; }
+
 .icon-store:before { content: "\e609"; }
+
+.icon-up:before { content: "\e621"; }
 
 .icon-nanzhuang:before { content: "\e615"; }
 
 .icon-settings:before { content: "\e611"; }
 
 .icon-badaxilietubiao01:before { content: "\e616"; }
+
+.icon-right:before { content: "\e681"; }
 
 .icon-change:before { content: "\e61f"; }
 

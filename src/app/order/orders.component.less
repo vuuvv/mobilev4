@@ -1,0 +1,247 @@
+ul, li {
+  list-style: none;
+}
+
+v-footer {
+  .ordercb {
+    margin-left: .6rem;
+  }
+  .check-all-text {
+    display: flex;
+    align-items: center;
+  }
+
+  .total-price {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-right: 0.6rem;
+  }
+
+  .total-price-cont {
+    width: 100%;
+    text-align: right;
+  }
+}
+
+.nav-tab-top {
+  width: 100%;
+  position: fixed;
+  top:2.2rem;
+  height: 50px;
+
+  ul {
+    display: flex;
+    background: #fff;
+    border-bottom: 1px solid #e7e7e7;
+  }
+
+  li {
+    flex: 1;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    font-weight: normal;
+
+    &.active {
+      border-bottom: 1px solid #ff5000;
+      box-sizing: border-box;
+      color: #ff5000;
+    }
+  }
+}
+
+.order-cont {
+  padding-top: 58px;
+  font-size: 14px;
+
+  li {
+    margin-bottom: .4rem;
+    position: relative;
+    border-bottom: 1px solid #e7e7e7;
+  }
+}
+
+.ordercb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: .6rem;
+
+  p {
+    line-height: 0;
+  }
+
+  input[type=checkbox] {
+    display: none;
+
+    &+label {
+      display: inline-block;
+      width: 1rem;
+      height: 1rem;
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoBAMAAAB+0KVeAAAAA3NCSVQICAjb4U/gAAAALVBMVEX///+hprehprehprehprehprehprehprehprehprehprehprehprehprehprd0XKVXAAAAD3RSTlMAESIzRGZ3iJmqu8zd7v8zDtSdAAAACXBIWXMAAAsSAAALEgHS3X78AAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAAPVJREFUKJF1k88KQUEUxg/yrygLG4m8gLKVUlZ28gTyAsrCTskLKLL3BFKysJO1IixkYSMkrr5nMPeie+/0OYuZ6TedP3PONyKWecpjYNWKicO8PVh2zDjYSIHTWi0PmzaAeUkk3gYOP5YAhp9THhh8kyww+90XYHySJXG3w3cwtfYRqjb042FuAdyc1dVQV2sWTScMYm96G+KyhfL34uKGRWQkhL4bhtGVFHJu6MNOKlpIFfQqnbsOFZlcdVh5yuasw/RLsNVhFIKlDiP/IHOniWhJtHj6TNoQ2jraZDoOPjg6YioGLhsqMCpFLloub/oR9C/zBsU0n4PhpWahAAAAAElFTkSuQmCC) no-repeat;
+      background-size: 1rem;
+    }
+
+    &:checked+label {
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAA3NCSVQICAjb4U/gAAAAh1BMVEX/////UAD/UAD/UAD/UAD/UAD/UAD/UAD/UAD/UAD/UAD/UAD/////+vj/9fD/8ev/8On/7OP/6d//5Nj/4NL/3s//2cj/1MH/zLX/w6f/wKP/upv/t5b/rYf/qID/oXb/mWb/jlr/jFj/dTb/cC//biz/bSr/aCP/XhT/Wg7/Vgn/UQL/UADQOR1YAAAALXRSTlMAESJEd4iZqrvM3e7///////////////////////////////////////////9INcYgAAAACXBIWXMAAAsSAAALEgHS3X78AAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAARJJREFUOI2N1et2wiAMAOBApVZg7j7dzbn71Lz/8w0qcsKtJr/EfgcIDSkADdGpQaMLPahOQCtkb5CE6WWdzbGIeYXOTOncrLOMicp0YdJkq2LRcogLwXOJbK4bVo95TDvEkJGs5kvDSM7CcXF53iH6KXsO7N3RnN2hDyOgaz/9evyIvztQTfe5tBeH00DB0HLfl9au42gAPeFW+zjUMOEeduSPBiwchdvbbdtReGNtkD+lQ5LMmw3y97p0mh7Pq5PvR3efOXc89MBH6d3dX56dSl/hi5NXNedeYVoUXtacK4qszJ6qzpdZVriHzXPFjYXLvgr8y8W+rvwGwG8p7CbFb3v8Rgr81gzsZj9ulX4+0kf/qVXH8bP2GwMAAAAASUVORK5CYII=) no-repeat;
+      background-size: 1rem;
+    }
+  }
+}
+
+.seller-wrap {
+  display: flex;
+  align-items: center;
+  height: 2.0rem;
+  padding: 0 0.6rem;
+  background: #fff;
+}
+
+.seller-bd {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  font-size: 12px;
+
+  .state {
+    p {
+      color: #ff5000;
+    }
+  }
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.contact-cont {
+  display: flex;
+
+  .title {
+    line-height: 0.9rem;
+    text-align: left;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+  }
+}
+
+.item-cont {
+  margin: 0;
+  font-size: 12px;
+  display: flex;
+  padding: .2rem .6rem;
+  background: #f5f5f5;
+}
+
+.item-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin-right: .5rem;
+  background: #fff;
+
+  img {
+    max-width: 100%;
+    display: block;
+    transform: translateZ(0);
+  }
+}
+
+.item-info {
+  flex: 1;
+
+  .title {
+    font-size: 12px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+  }
+
+  .sku {
+    color: #999;
+    font-size: 12px;
+    margin-top: .25rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+  }
+}
+
+.item-pay {
+  font-size: 13px;
+  width: 3.6rem;
+  text-align: right;
+
+  .price {
+    line-height: .8rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .num {
+    font-size: 12px;
+    color: #999;
+  }
+}
+
+.pay-wrap {
+  display: flex;
+  align-items: center;
+  padding: 0.12rem .6rem .12rem 0;
+  background: #fff;
+  min-height: 1.65rem;
+  border-bottom: 1px solid #e7e7e7;
+  font-size: 14px;
+  text-align: right;
+}
+
+.pay-cont {
+  width: 100%;
+  word-break: break-all;
+
+  span {
+    margin-left: .6rem;
+
+    b {
+      font-weight: 700;
+    }
+  }
+}
+
+.operators {
+  padding: 0.12rem .6rem .12rem 0;
+  background: #fff;
+  border-bottom: 1px solid #e7e7e7;
+
+  ul {
+    position: relative;
+  }
+
+  li {
+    float: right;
+    padding: 0 .5rem;
+    margin: .25rem 0 .25rem .25rem;
+
+    height: 1.3rem;
+    line-height: 1.3rem;
+    text-align: center;
+    border: 1px solid #ff5000;
+    border-radius: .1rem;
+    color: #ff5000;
+  }
+}

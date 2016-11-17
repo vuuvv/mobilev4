@@ -1,4 +1,4 @@
-import { Directive, HostBinding, ViewContainerRef, OnInit, AfterViewInit, Input, AfterContentInit } from '@angular/core';
+import { Directive, HostBinding, ViewContainerRef, OnInit, Input } from '@angular/core';
 
 @Directive({
   selector: '[v-touch-drag]',
@@ -15,34 +15,21 @@ import { Directive, HostBinding, ViewContainerRef, OnInit, AfterViewInit, Input,
     '(panright)':'move($event)',
     '(panup)':'move($event)',
     '(pandown)':'move($event)',
-    '(swipeleft)': 'moveX(-200, true)',
-    '(swiperight)': 'moveX(200, true)',
-    '(swipeup)': 'moveX(-600, true)',
-    '(swipedown)': 'moveX(600, true)',
+    '(swipeleft)': 'moveX(-parentLength, true)',
+    '(swiperight)': 'moveX(parentLength, true)',
+    '(swipeup)': 'moveX(-parentLength, true)',
+    '(swipedown)': 'moveX(parentLength, true)',
   }
 })
-export class TouchDragDirective implements OnInit, AfterViewInit, AfterContentInit {
+export class TouchDragDirective {
   private startPosition: number = 0;
   private moving: boolean = false;
   private position: number = 0;
   private width: number = 0;
-  private parentWidth: number = 0;
   private inTransition: boolean = false;
   @Input('direction') direction = 'horizontal';
 
   constructor(private viewContainerRef: ViewContainerRef) {
-  }
-
-  ngOnInit() {
-    console.log('OnInit')
-  }
-
-  ngAfterViewInit() {
-    console.log('AfterViewInit')
-  }
-
-  ngAfterContentInit() {
-    console.log('AfterContentInit')
   }
 
   get length(): number {

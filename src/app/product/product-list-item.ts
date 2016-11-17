@@ -10,10 +10,15 @@ import { Product } from '../shared';
 export class ProductListItem {
   @Input('product') product: Product = new Product();
   @Output('select') onSelect: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output('open') onOpen: EventEmitter<string> = new EventEmitter<string>();
   selected: boolean = false;
 
   select() {
     this.selected = !this.selected;
     this.onSelect.emit(this.selected);
+  }
+
+  open(spu: string) {
+    this.onOpen.emit(spu);
   }
 }

@@ -1,0 +1,9 @@
+<div class="weui-panel">
+  <div class="weui-panel__hd" (click)="toggle()">
+    <span>{{ title }}</span>
+    <i [ngClass]="iconClass" *ngIf="hasContent"></i>
+  </div>
+  <div class="weui-panel__bd" *ngIf="!collapsed">
+    <ng-content></ng-content>
+  </div>
+</div>

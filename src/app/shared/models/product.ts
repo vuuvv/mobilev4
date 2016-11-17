@@ -1,17 +1,26 @@
 export class ProductSku {
-  sku: string;
-  spec: string;
+  hmbskucode: string;
+  title: string;
   price: number;
   weight: number;
 }
 
 export class Product {
-  spu: string;
-  image: string;
-  title: string;
-  price: number;
-  sales: number;
+  hmbspucode: string;
+  firstImageUrl: string;
+  item_name: string;
+  balancePrice: number;
+  selectNum: number;
   images: string[];
   detail: string;
-  skus: ProductSku[];
+  skuList: ProductSku[];
+  weight: string;
+  item_desc: string;
+  imgurls: string;
+  onsale: string;
+  storeList: any[];
+
+  prompt: string;
+  shipStr: string;
+  cateList: any[];
 }

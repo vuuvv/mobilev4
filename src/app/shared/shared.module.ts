@@ -1,4 +1,5 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { Http as RawHttp } from '@angular/http';
 
@@ -10,6 +11,7 @@ import { CORE_COMPONENTS } from './components';
 
 @NgModule({
   imports: [
+    CommonModule,
     CoreModule,
   ],
   declarations: [

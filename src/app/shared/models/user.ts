@@ -5,5 +5,5 @@ import { Store } from './store';
 export class User {
   account: Account[];
   user: UserInfo;
-  store: Store[];
+  stores: Store[];
 }

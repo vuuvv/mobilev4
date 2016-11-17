@@ -8,6 +8,8 @@ import { SharedModule, AuthorizeGuard } from '../shared';
 import { ProductListItem } from './product-list-item';
 import { ProductComponent } from './product.component';
 import { ProductDetailComponent } from './product-detail.component';
+import { ProductPublishComponent } from './product-publish.component';
+import { ProductSelectStoreComponent } from './stores.component';
 import { SearchComponent } from './search.component';
 import { CategoryComponent } from './category.component';
 
@@ -18,9 +20,8 @@ const routes: Routes = [
     canActivateChild: [AuthorizeGuard],
     children: [
       {
-        path: '',
+        path: 'home/:state',
         component: ProductComponent,
-        pathMatch: 'full',
       },
       {
         path: 'search',
@@ -66,6 +67,8 @@ const routes: Routes = [
     ProductComponent,
     ProductListItem,
     ProductDetailComponent,
+    ProductPublishComponent,
+    ProductSelectStoreComponent,
     SearchComponent,
     CategoryComponent,
   ],

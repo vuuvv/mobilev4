@@ -5,6 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class YuanPipe {
   transform(value: number | string) {
+    value = value || 0;
     return `¥${value}`;
   }
 }
