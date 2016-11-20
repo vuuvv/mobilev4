@@ -47,6 +47,9 @@ export class DialogService {
   }
 
   alert(content: string, title: string = null): AlertResult {
+    if (content && content.length > 200) {
+      content = content.substring(0, 200);
+    }
     let data = {
       content: content,
     }
@@ -67,6 +70,9 @@ export class DialogService {
   }
 
   confirm(content: string, title: string = null): ConfirmResult {
+    if (content && content.length > 200) {
+      content = content.substring(0, 200);
+    }
     let data = {
       content: content,
     }

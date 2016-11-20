@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { CoreModule, OverlayModule, PageModule, DialogModule, CarouselModule, InfiniteScrollModule } from '../../components';
 import { SharedModule, AuthorizeGuard } from '../shared';
 
 import { ProductListItem } from './product-list-item';
 import { ProductComponent } from './product.component';
+import { OnsaleProductsComponent } from './onsale-products.component';
+import { PublishedProductsCompnent } from './published-products.component';
 import { ProductDetailComponent } from './product-detail.component';
 import { ProductPublishComponent } from './product-publish.component';
 import { ProductSelectStoreComponent } from './stores.component';
@@ -28,16 +31,12 @@ const routes: Routes = [
         component: SearchComponent,
       },
       {
-        path: 'selected',
-        component: ProductComponent,
+        path: 'published',
+        component: PublishedProductsCompnent,
       },
       {
-        path: 'insale',
-        component: ProductComponent,
-      },
-      {
-        path: 'detail',
-        component: ProductDetailComponent,
+        path: 'onsale/:state',
+        component: OnsaleProductsComponent,
       },
       {
         path: 'category',
@@ -50,6 +49,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule,
 
     CoreModule,
@@ -65,6 +65,8 @@ const routes: Routes = [
   ],
   declarations: [
     ProductComponent,
+    OnsaleProductsComponent,
+    PublishedProductsCompnent,
     ProductListItem,
     ProductDetailComponent,
     ProductPublishComponent,

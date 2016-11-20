@@ -9,5 +9,4 @@ export * from './category';
 export * from './tree';
 export * from './product';
 export * from './publishProduct';
-export * from './order-item';
 export * from './order';

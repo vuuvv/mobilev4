@@ -49,6 +49,8 @@ export class Overlay implements OnInit {
   private overlayConfigs: OverlayConfig[] = [];
 
   showToast: boolean = false;
+  toastText: string = "";
+  toastIcon: string = "";
 
   constructor(private overlayService: OverlayService) {
   }
@@ -71,10 +73,19 @@ export class Overlay implements OnInit {
     });
 
     this.overlayService.getToastEvent().subscribe((config) => {
-      this.showToast = true;
-      setTimeout(() => {
+      if (!config.show) {
         this.showToast = false;
-      }, config.duration)
+        return;
+      }
+      this.showToast = config.show;
+      this.toastText = config.text;
+      this.toastIcon = config.icon;
+
+      if (config.duration) {
+        setTimeout(() => {
+          this.showToast = false;
+        }, config.duration)
+      }
     })
   }
 
@@ -84,6 +95,10 @@ export class Overlay implements OnInit {
     } else {
       return 'none';
     }
+  }
+
+  get iconClass(): string {
+    return `${this.toastIcon} weui-icon_toast`;
   }
 }
 

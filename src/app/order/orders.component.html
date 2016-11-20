@@ -1,21 +1,21 @@
 <v-page>
-  <v-footer>
+  <v-footer *ngIf="state=='unpay'">
     <div class="ordercb">
       <p>
-        <input type="checkbox" id="check-all">
+        <input type="checkbox" id="check-all" (change)="selectAll($event)">
         <label for="check-all"></label>
       </p>
     </div>
     <div class="check-all-text">
-      全选
+      全选({{ totalCount() }})
     </div>
     <div class="total-price">
       <div class="total-price-cont">
         <p>
-          <span>合计:</span><span class="price">252.70</span>
+          <span>合计:</span><span class="price">{{ totalPrice() | yuan}}</span>
         </p>
         <p>
-          <span>含运费:</span><span>2.70</span>
+          <span>含运费:</span><span>{{ totalFreight() | yuan }}</span>
         </p>
       </div>
     </div>
@@ -25,195 +25,33 @@
     <v-btn class="left" v-back icon="back"></v-btn>
     <v-btn class="right" v-home icon="home"></v-btn>
   </v-header>
-  <v-content>
+  <v-content
+      infinite-scroll
+      [scrollWindow]="false"
+      [infiniteScrollDistance]="1.5"
+      [infiniteScrollThrottle]="10"
+      (scrolled)="getOrderList()">
     <div class="order-cont">
       <div class="order">
         <ul class="order-list">
-          <li>
-            <div class="seller">
-              <div class="seller-wrap">
-                <div class="ordercb">
-                  <p>
-                    <input type="checkbox" id="order-1">
-                    <label for="order-1"></label>
-                  </p>
-                </div>
-                <div class="seller-bd">
-                  <div class="contact">
-                    <div class="contact-cont">
-                      <p class="title">纽巴伦、福州宝龙专卖店</p>
-                    </div>
-                  </div>
-                  <div class="state">
-                    <div class="state-cont">
-                      <p>等待买家付款</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <order-item></order-item>
-            <order-item></order-item>
-            <order-item></order-item>
-            <div class="pay">
-              <div class="pay-wrap">
-                <div class="pay-cont">
-                  <span>共<b>4</b>件商品</span>
-                  <span>合计:<b>￥192.00</b></span>
-                  <span>(含运费:<b>￥192.00</b>)</span>
-                </div>
-              </div>
-            </div>
-            <div class="orderop">
-              <div class="operators">
-                <ul class="clearfix">
-                  <li>付款</li>
-                </ul>
-              </div>
-            </div>
+          <li *ngFor="let order of orders; let i = index">
+            <order [order]="order" [index]="i" [canCheck]="state=='unpay'"></order>
           </li>
-          <li>
-            <div class="seller">
-              <div class="seller-wrap">
-                <div class="ordercb">
-                  <p>
-                    <input type="checkbox" id="order-1">
-                    <label for="order-1"></label>
-                  </p>
-                </div>
-                <div class="seller-bd">
-                  <div class="contact">
-                    <div class="contact-cont">
-                      <p class="title">纽巴伦、福州宝龙专卖店</p>
-                    </div>
-                  </div>
-                  <div class="state">
-                    <div class="state-cont">
-                      <p>等待买家付款</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="item-cont">
-                <div class="item-img">
-                  <p>
-                    <img src="https://gw.alicdn.com/bao/uploaded/i1/TB1rX4iLXXXXXXQXVXXXXXXXXXX_!!0-item_pic.jpg_120x120q50s150.jpg" alt="">
-                  </p>
-                </div>
-                <div class="item-info">
-                  <div class="title">小米wifi信号放大器家用无线信号增强扩大器万能中继器迷你便携  </div>
-                  <div class="sku">套餐类型:标准配置</div>
-                </div>
-                <div class="item-pay">
-                  <div class="item-pay-data">
-                    <p class="price">￥39.00</p>
-                    <p class="num">x2</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="item-cont">
-                <div class="item-img">
-                  <p>
-                    <img src="https://gw.alicdn.com/bao/uploaded/i3/1714128138/TB24w3PcXXXXXXrXpXXXXXXXXXX_!!1714128138.jpg_120x120q50s150.jpg" alt="">
-                  </p>
-                </div>
-                <div class="item-info">
-                  <div class="title">小米体重秤智能家用婴儿称重成人减肥称家庭精准人体体重电子秤</div>
-                  <div class="sku">套餐类型:白色</div>
-                </div>
-                <div class="item-pay">
-                  <div class="item-pay-data">
-                    <p class="price">￥139.00</p>
-                    <p class="num">x1</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="pay">
-              <div class="pay-wrap">
-                <div class="pay-cont">
-                  <span>共<b>4</b>件商品</span>
-                  <span>合计:<b>￥192.00</b></span>
-                  <span>(含运费:<b>￥192.00</b>)</span>
-                </div>
-              </div>
-            </div>
-            <div class="orderop">
-              <div class="operators">
-                <ul class="clearfix">
-                  <li>付款</li>
-                </ul>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="seller">
-              <div class="seller-wrap">
-                <div class="seller-bd">
-                  <div class="contact">
-                    <div class="contact-cont">
-                      <p class="title">纽巴伦、福州宝龙专卖店</p>
-                    </div>
-                  </div>
-                  <div class="state">
-                    <div class="state-cont">
-                      <p>等待买家付款</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="item-cont">
-                <div class="item-img">
-                  <p>
-                    <img src="https://gw.alicdn.com/bao/uploaded/i1/TB1rX4iLXXXXXXQXVXXXXXXXXXX_!!0-item_pic.jpg_120x120q50s150.jpg" alt="">
-                  </p>
-                </div>
-                <div class="item-info">
-                  <div class="title">小米wifi信号放大器家用无线信号增强扩大器万能中继器迷你便携  </div>
-                  <div class="sku">套餐类型:标准配置</div>
-                </div>
-                <div class="item-pay">
-                  <div class="item-pay-data">
-                    <p class="price">￥39.00</p>
-                    <p class="num">x2</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="pay">
-              <div class="pay-wrap">
-                <div class="pay-cont">
-                  <span>共<b>4</b>件商品</span>
-                  <span>合计:<b>￥192.00</b></span>
-                  <span>(含运费:<b>￥192.00</b>)</span>
-                </div>
-              </div>
-            </div>
-            <div class="orderop">
-              <div class="operators">
-                <ul class="clearfix">
-                  <li>付款</li>
-                </ul>
-              </div>
-            </div>
-          </li>
-        </ul>
+       </ul>
       </div>
     </div>
+    <v-loading-box *ngIf="loading"></v-loading-box>
+    <v-empty-page title="您还没有相关的订单" *ngIf="!orders.length && !loading"></v-empty-page>
   </v-content>
   <div class="nav-tab-top">
     <ul>
-      <li class="active">待付款</li>
-      <li class="">待提交</li>
-      <li class="">已退款</li>
-      <li class="">已完成</li>
-      <li class="">已关闭</li>
+      <li [routerLink]="['/order/list/all']" routerLinkActive="active">全部</li>
+      <li [routerLink]="['/order/list/unpay']" routerLinkActive="active">待付款</li>
+      <li [routerLink]="['/order/list/warehouse']" routerLinkActive="active">待发货</li>
+      <li [routerLink]="['/order/list/delivered']" routerLinkActive="active">已发货</li>
+      <li [routerLink]="['/order/list/error']" routerLinkActive="active">异常</li>
+      <li [routerLink]="['/order/list/closed']" routerLinkActive="active">已关闭</li>
     </ul>
   </div>
+  <v-float-btn icon="xiazai"  *ngIf="state=='unpay'" [routerLink]="['/order/sync']"></v-float-btn>
 </v-page>

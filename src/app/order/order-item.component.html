@@ -2,17 +2,17 @@
   <div class="item-cont">
     <div class="item-img">
       <p>
-        <img src="{{ orderItem.image | unsafe }}" alt="">
+        <img src="{{ orderService.getOrderItemImage(orderItem) }}" alt="">
       </p>
     </div>
     <div class="item-info">
-      <div class="title">{{ orderItem.title }}</div>
-      <div class="sku">套餐类型:{{ orderItem.sku }}</div>
+      <div class="title">{{ orderItem?.ProductName }}</div>
+      <div class="sku" *ngIf="orderItem?.ProductProperty">产品属性:{{ orderItem?.ProductProperty }}</div>
     </div>
     <div class="item-pay">
       <div class="item-pay-data">
-        <p class="price">{{ orderItem.price | yuan }}</p>
-        <p class="num">x{{ orderItem.count }}</p>
+        <p class="price">{{ orderItem?.ProductPrice | yuan }}</p>
+        <p class="num">x{{ orderItem?.BeSendNum }}</p>
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params, Router, Event } from '@angular/router';
 
@@ -8,10 +8,11 @@ import { DialogService, OverlayService } from '../../components';
 type State = 'list' | 'detail' | 'stores' | 'publish';
 
 @Component({
-  templateUrl: './product.component.html',
+  selector: 'product-list',
+  templateUrl: './onsale-products.component.html',
   styleUrls: ['./product.component.less'],
 })
-export class ProductComponent implements OnInit {
+export class OnsaleProductsComponent implements OnInit {
   private state: State = 'list';
 
   private categories: Node<Category>[] = [];
@@ -87,11 +88,11 @@ export class ProductComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this.productService.getProducts(this.page, this.pageSize, this.category, this.keywords).subscribe((value) => {
+    this.productService.getProducts(this.page, this.pageSize, this.category, this.keywords, "1").subscribe((value) => {
       this.products = this.products.concat(value);
       this.loading = false;
       this.page++;
-    })
+    });
   }
 
   viewList(category: string, keywords: string) {
@@ -159,24 +160,20 @@ export class ProductComponent implements OnInit {
     });
   }
 
+  go(state: string, params: any = {}) {
+    this.router.navigate([`/product/home/${state}`, params]);
+  }
+
   showProduct(spu: string) {
-    this.router.navigate(['/product/home/detail', {product:spu}]);
+    this.go('detail', {product:spu});
   }
 
-  showStores() {
-    this.router.navigate(['/product/home/stores']);
-  }
-
-  showPublish() {
-    this.router.navigate(['/product/home/publish']);
-  }
-
-  onPublish(spu) {
+  showStores(spu) {
     this.publishSpu = spu;
-    this.router.navigate(['./product/home/stores']);
+    this.go('stores');
   }
 
-  onSelectStore(store: Store) {
-    this.router.navigate(['./product/home/publish', {product: this.publishSpu, store: store.StoreCode}]);
+  showPublish(store: Store) {
+    this.go('publish', {product: this.publishSpu, store: store.StoreCode});
   }
 }

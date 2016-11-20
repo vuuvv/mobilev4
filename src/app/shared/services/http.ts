@@ -50,7 +50,7 @@ export class HttpError extends Error {
   constructor(resp: ApiResult<any>) {
     super();
     this.code = resp.error_code;
-    this.message = `[${resp.error_code}]${resp.error_message}`;
+    this.message = `[${resp.error_code}]${resp.error_message || '错误'}`;
   }
 }
 

@@ -14,8 +14,10 @@ export class OverlayConfig {
 }
 
 export class ToastConfig {
+  show: boolean;
   duration: number;
   text?: string;
+  icon?: string;
 }
 
 @Injectable()
@@ -67,9 +69,23 @@ export class OverlayService {
     this.closeEmitter.next(null);
   }
 
-  toast(duration: number = 1000) {
+  toast(text: string = '操作成功', icon: string = 'weui-icon-success-no-circle', duration: number = 1000) {
     this.toastEmitter.next({
-      duration: duration
+      show: true,
+      duration,
+      text,
+      icon,
     });
+  }
+
+  hideToast() {
+    this.toastEmitter.next({
+      show: false,
+      duration: 0,
+    })
+  }
+
+  loading(text: string = '数据加载中...') {
+    this.toast(text, 'weui-loading', 0);
   }
 }

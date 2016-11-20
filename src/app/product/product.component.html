@@ -1,8 +1,8 @@
 <v-page [class.hidden]="state!='list'">
   <v-footer>
     <v-item [routerLink]="['/product/home/list']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" label="找货源" icon="huoyuan"></v-item>
-    <v-item [routerLink]="['/product/selected']" routerLinkActive="active" label="已代理" icon="daili"></v-item>
-    <v-item [routerLink]="['/product/insale']" routerLinkActive="active" label="去销售" icon="shangjia" ></v-item>
+    <v-item [routerLink]="['/product/onsale/list']" routerLinkActive="active" label="已代理" icon="daili"></v-item>
+    <v-item [routerLink]="['/product/published']" routerLinkActive="active" label="去销售" icon="shangjia" ></v-item>
   </v-footer>
   <v-header class="category-container">
     <v-btn class="left" v-home icon="home"></v-btn>
@@ -26,6 +26,6 @@
   </v-content>
   <v-float-btn icon="search" [routerLink]="['/product/search']"></v-float-btn>
 </v-page>
-<product-detail [product]="product" [class.hidden]="state!='detail'" (select)="onSelect($event)" (publish)="onPublish($event)"></product-detail>
-<product-select-store [stores]="productService.getUnpublishStores(product)" [class.hidden]="state!='stores'" (select)="onSelectStore($event)"></product-select-store>
+<product-detail [product]="product" [class.hidden]="state!='detail'" (select)="onSelect($event)" (publish)="showStores($event)"></product-detail>
+<product-select-store [stores]="productService.getUnpublishStores(product)" [class.hidden]="state!='stores'" (select)="showPublish($event)"></product-select-store>
 <product-publish [product]="publishProduct" [store]="publishStore" [class.hidden]="state!='publish'" (submit)="submit($event)"></product-publish>

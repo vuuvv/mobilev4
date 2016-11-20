@@ -3,9 +3,11 @@ export class ProductSku {
   title: string;
   price: number;
   weight: number;
+  skuId?: string;
 }
 
 export class Product {
+  id: string;
   hmbspucode: string;
   firstImageUrl: string;
   item_name: string;

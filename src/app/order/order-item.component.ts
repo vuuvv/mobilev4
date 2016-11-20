@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { OrderItem } from '../shared';
+import { OrderItem, OrderService } from '../shared';
 
 @Component({
   selector: 'order-item',
@@ -9,4 +9,7 @@ import { OrderItem } from '../shared';
 })
 export class OrderItemComponent {
   @Input('orderItem') orderItem: OrderItem = new OrderItem();
+
+  constructor(private orderService: OrderService) {
+  }
 }

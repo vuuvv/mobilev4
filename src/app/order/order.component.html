@@ -1,41 +1,42 @@
 <div class="seller">
   <div class="seller-wrap">
-    <div class="ordercb">
+    <div class="ordercb" *ngIf="canCheck && !orderService.cannotPay(order)">
       <p>
-        <input type="checkbox" id="order-{{}}">
-        <label for="order-1"></label>
+        <input type="checkbox" [id]="id" [(ngModel)]="order.$$Checked">
+        <label [attr.for]="id"></label>
       </p>
     </div>
     <div class="seller-bd">
       <div class="contact">
         <div class="contact-cont">
-          <p class="title">纽巴伦、福州宝龙专卖店</p>
+          <p class="title">{{ order.SellOrderCode }}</p>
         </div>
       </div>
       <div class="state">
         <div class="state-cont">
-          <p>等待买家付款</p>
+          <p>{{ orderService.cannotPay(order) ? '非平台产品,不可提交' : order.State }}</p>
         </div>
       </div>
     </div>
   </div>
 </div>
-<order-item></order-item>
-<order-item></order-item>
-<order-item></order-item>
+<order-item *ngFor="let item of order.DetailList" [orderItem]="item"></order-item>
 <div class="pay">
   <div class="pay-wrap">
     <div class="pay-cont">
-      <span>共<b>4</b>件商品</span>
-      <span>合计:<b>￥192.00</b></span>
-      <span>(含运费:<b>￥192.00</b>)</span>
+      <span>{{ orderService.getStoreName() }}</span>
+      <span>共<b>{{ orderService.totalCount(order) }}</b>件商品</span>
+      <span>合计:<b>{{ orderService.totalFee(order) | yuan }}</b></span>
+      <span>(含运费:<b>{{ order.AllFreight | yuan}}</b>)</span>
     </div>
   </div>
 </div>
 <div class="orderop">
   <div class="operators">
     <ul class="clearfix">
-      <li>付款</li>
+      <li (click)="refund()" *ngIf="can('refund')"> 退款</li>
+      <li (click)="submit()" *ngIf="can('submit')">提交</li>
+      <li (click)="pay()" *ngIf="can('pay') && !orderService.cannotPay(order)">付款</li>
     </ul>
   </div>
 </div>

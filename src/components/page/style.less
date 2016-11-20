@@ -41,11 +41,11 @@ label > * {
 }
 
 // rem
-@bps: 400px, 414px, 480px; 
+@bps: 400px, 414px, 480px;
 
 .loop(@i: 1) when (@i <= length(@bps)) {
   @bp: extract(@bps, @i);
-  @font: @bp/@baseWidth*@baseFont;  
+  @font: @bp/@baseWidth*@baseFont;
   @media only screen and (min-width: @bp){
     html {
       font-size: @font !important;
@@ -91,7 +91,7 @@ a {
 }
 .clearfix:after {
     clear: both;
-    content: " ";
+    content: "";
     display: block;
     font-size: 0;
     height: 0;

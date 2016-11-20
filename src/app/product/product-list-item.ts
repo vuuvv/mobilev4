@@ -21,4 +21,17 @@ export class ProductListItem {
   open(spu: string) {
     this.onOpen.emit(spu);
   }
+
+  get firstImage() {
+    if (!this.product) {
+      return "";
+    }
+    if (this.product.firstImageUrl) {
+      return this.product.firstImageUrl;
+    }
+    if (this.product.imgurls) {
+      return this.product.imgurls.split(';')[0];
+    }
+    return "";
+  }
 }

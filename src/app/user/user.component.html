@@ -24,7 +24,7 @@
 
     <div class="weui-panel weui-panel_access order-panel">
       <div class="weui-panel__hd">
-        <a class="weui-cell weui-cell_access" [routerLink]="['/order']">
+        <a class="weui-cell weui-cell_access" [routerLink]="['/order/list/all']">
           <div class="weui-cell__hd">
             <div class="ico">
               <div class="ico-cont ico-form">
@@ -43,7 +43,7 @@
       <div class="weui-panel__bd">
         <div class="order-act">
           <div class="order-act-item">
-            <a [routerLink]="['/']">
+            <a [routerLink]="['/order/list/unpay']">
               <p>
                 <span class="iconfont icon-pay"></span>
               </p>
@@ -51,7 +51,7 @@
             </a>
           </div>
           <div class="order-act-item">
-            <a [routerLink]="['/']">
+            <a [routerLink]="['/order/list/warehouse']">
               <p>
                 <span class="iconfont icon-send"></span>
               </p>
@@ -59,30 +59,29 @@
             </a>
           </div>
           <div class="order-act-item">
-            <a [routerLink]="['/']">
+            <a [routerLink]="['/order/list/delivered']">
               <p>
                 <span class="iconfont icon-deliver"></span>
               </p>
-              <p class="sub">待收货</p>
+              <p class="sub">已发货</p>
             </a>
           </div>
           <div class="order-act-item">
-            <a [routerLink]="['/']">
-              <p>
-                <span class="iconfont icon-evaluate"></span>
-              </p>
-              <p class="sub">待评价</p>
-            </a>
-          </div>
-          <div class="order-act-item">
-            <a [routerLink]="['/']">
+            <a [routerLink]="['/order/list/error']">
               <p>
                 <span class="iconfont icon-refund"></span>
               </p>
-              <p class="sub">已退款</p>
+              <p class="sub">异常订单</p>
             </a>
           </div>
-
+          <div class="order-act-item">
+            <a [routerLink]="['/order/list/closed']">
+              <p>
+                <span class="iconfont icon-evaluate"></span>
+              </p>
+              <p class="sub">已关闭</p>
+            </a>
+          </div>
         </div>
       </div>
     </div>

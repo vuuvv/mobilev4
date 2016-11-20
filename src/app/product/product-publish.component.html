@@ -17,6 +17,69 @@
       <div class="inner-back" v-back></div>
     </div>
 
+    <div class="weui-panel" *ngIf="product?.cateList?.length">
+      <a name="category"></a>
+      <div class="weui-panel__hd">
+        <span>选择类型</span>
+      </div>
+      <div class="weui-panel__bd">
+        <div class="weui-media-box weui-media-box_small-appmsg">
+          <div class="weui-cells weui-cells_checkbox">
+            <label class="weui-cell weui-check__label" *ngFor="let cate of cateList" [attr.for]="cate.cate_id">
+              <div class="weui-cell__hd">
+                <input type="checkbox" class="weui-check" id="{{ cate.cate_id }}" [(ngModel)]="cate.$$checked">
+                  <i class="weui-icon-checked"></i>
+              </div>
+              <div class="weui-cell__bd"><p>{{ cate.cate_name }}</p></div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="weui-panel">
+      <a name="title"></a>
+      <div class="weui-panel__hd">
+        <span>设置标题</span>
+      </div>
+      <div class="weui-panel__bd">
+        <div class="weui-media-box weui-media-box_small-appmsg">
+          <div class="weui-cells weui-cells_form">
+            <div class="weui-cell origin">
+              <div class="weui-cell__bd">
+                <textarea class="weui-textarea" placeholder="请输入文本" rows="3" [(ngModel)]="publishProduct.subject"></textarea>
+                <div class="weui-textarea-counter"><span>0</span>/200</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="weui-panel">
+      <a name="price"></a>
+      <div class="weui-panel__hd">
+        <span>设置价格</span>
+      </div>
+      <div class="weui-panel__bd">
+        <div class="weui-media-box weui-media-box_small-appmsg">
+          <div class="weui-cells weui-cells_form">
+            <div class="weui-cell origin">
+              <div class="weui-cell__hd"><label class="weui-label">产品价格</label></div>
+              <div class="weui-cell__bd">
+                <input class="weui-input" type="text" placeholder="请输入产品价格" [(ngModel)]="publishProduct.spuPrice">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="weui-panel__ft">
+        <div class="weui-cell">
+          <div class="weui-cell__bd">利润：{{ profit | yuan }}</div>
+        </div>
+      </div>
+    </div>
+
     <v-collapsable [title]="'SKU属性(' + product?.hmbspucode + ')'" [hasContent]="product?.skuList?.length">
       <div class="weui-media-box weui-media-box_small-appmsg">
         <div class="weui-cells">

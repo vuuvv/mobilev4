@@ -1,7 +1,7 @@
 <div class="item">
   <a (click)="open()" class="item-url">
     <div class="pic-wrapper">
-      <img alt="" class="img" src="{{ product.firstImageUrl }}">
+      <img alt="" class="img" src="{{ firstImage }}">
     </div>
     <div class="desc-wrapper">
       <div class="text-wrapper">
@@ -20,8 +20,8 @@
   <div class="action-wrapper">
     <span class="fav-btn" (click)="select()" [class.selected]="selected">
       <span class="iconfont" [class.icon-xuanshou]="selected" [class.icon-weixuanshou]="!selected"></span>
-      <span class="fav-num">{{ product.selectNum }}</span>
-      <span class="fav-txt">人选售</span>
+      <span class="fav-num" *ngIf="product.selectNum">{{ product.selectNum }}</span>
+      <span class="fav-txt" *ngIf="product.selectNum">人选售</span>
     </span>
   </div>
 </div>

@@ -1,0 +1,18 @@
+<v-page>
+  <v-header title="同步订单">
+    <v-btn class="left" v-back icon="back"></v-btn>
+    <v-btn class="right" v-home icon="home"></v-btn>
+  </v-header>
+  <v-content>
+    <div class="weui-cells">
+      <a class="weui-cell" *ngFor="let store of orderService.stores">
+        <div class="weui-cell__bd">
+          <p>{{ store.PlatformName }}({{ store.StoreName }})</p>
+        </div>
+        <div class="weui-cell__ft">
+          <p>{{ getProgress(store) }}</p>
+        </div>
+      </a>
+    </div>
+  </v-content>
+</v-page>

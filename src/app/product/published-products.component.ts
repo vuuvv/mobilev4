@@ -9,10 +9,10 @@ type State = 'list' | 'detail' | 'stores' | 'publish';
 
 @Component({
   selector: 'product-list',
-  templateUrl: './product.component.html',
+  templateUrl: './onsale-products.component.html',
   styleUrls: ['./product.component.less'],
 })
-export class ProductComponent implements OnInit {
+export class PublishedProductsCompnent implements OnInit {
   private state: State = 'list';
 
   private categories: Node<Category>[] = [];
@@ -48,6 +48,7 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     this.stores = this.authorizeService.user.stores;
+    this.selectStore = this.stores[0];
     this.route.params.forEach((params: Params) => {
       this.dispatch(params);
     })
@@ -88,7 +89,7 @@ export class ProductComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this.productService.getProducts(this.page, this.pageSize, this.category, this.keywords).subscribe((value) => {
+    this.productService.getPublishedProducts(this.selectStore, this.keywords, this.page, this.pageSize).subscribe((value) => {
       this.products = this.products.concat(value);
       this.loading = false;
       this.page++;
@@ -143,7 +144,6 @@ export class ProductComponent implements OnInit {
           this.alertAndBack("无效的产品");
           return;
         } else {
-          value.skuList = this.product.skuList;
           this.publishProduct = value;
         }
       });
@@ -171,13 +171,7 @@ export class ProductComponent implements OnInit {
 
   showStores(spu) {
     this.publishSpu = spu;
-    if (this.product.onsale === "1") {
-      this.go('stores');
-    } else {
-      this.productService.selectProduct(this.product.hmbspucode).subscribe(() => {
-        this.go('stores');
-      })
-    }
+    this.go('stores');
   }
 
   showPublish(store: Store) {

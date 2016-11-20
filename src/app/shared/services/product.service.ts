@@ -66,7 +66,7 @@ export class ProductService {
       }
       let ss = [];
       for (let s of this.stores) {
-        if (product.storeList.findIndex(value => value['storeId'] == s.StoreCode) == -1) {
+        if (product.storeList.findIndex(value => value['StoreId'] == s.StoreCode) == -1) {
           ss.push(s);
         }
       }
@@ -85,7 +85,7 @@ export class ProductService {
   getPublishedStore(product: Product): Store[] {
     if (product && product.storeList && product.storeList.length) {
       this.stores.filter((value: Store) => {
-        return product.storeList.findIndex(s => s['storeId'] == value.StoreCode) != -1;
+        return product.storeList.findIndex(s => s['StoreId'] == value.StoreCode) != -1;
       })
     } else {
       return [];
@@ -111,6 +111,16 @@ export class ProductService {
       hmbspucode: spu,
       storeId: store.StoreCode,
       retailPlatform: store.RetailPlatform,
+    });
+  }
+
+  getPublishedProducts(store: Store, keywords: string = "", start = 1, num = 10): Observable<Product[]> {
+    return this.http.get<Product[]>('mo/published', {
+      retailPlatform: store.RetailPlatform,
+      storeCode: store.StoreCode,
+      keywords,
+      start,
+      num
     });
   }
 
