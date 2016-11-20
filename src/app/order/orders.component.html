@@ -19,7 +19,7 @@
         </p>
       </div>
     </div>
-    <v-button [routerLink]="['bind']" width="6rem">付款</v-button>
+    <v-button (click)="pay()" width="6rem">付款</v-button>
   </v-footer>
   <v-header title="我的订单">
     <v-btn class="left" v-back icon="back"></v-btn>

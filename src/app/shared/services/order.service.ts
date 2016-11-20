@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Http } from './http';
-import { Store, Order, OrderItem, OrderSyncItem } from '../models';
+import { Store, Order, OrderItem, OrderSyncItem, OrderSyncItems } from '../models';
 import { AuthorizeService } from './authorize';
 
 import { Observable } from 'rxjs/Observable';
@@ -105,15 +105,41 @@ export class OrderService {
     return order.State === '待付款提交' && this.totalFee(order) === 0;
   }
 
-  syncList(store: Store): Observable<OrderSyncItem[]> {
-    return this.http.get<OrderSyncItem[]>('mo/synclist', {store});
+  syncList(store: Store): Observable<OrderSyncItems> {
+    return this.http.get<OrderSyncItem[]>('mo/synclist', {store: store.StoreCode,}).map((value) => {
+      return {
+        store: store,
+        items: value,
+      }
+    });
   }
 
-  sync(order: string, store: Store) {
-    return this.http.get('mo/syncorder', {
-      OrderCode: order,
-      StoreCode: store.StoreCode,
-      EPlatform: store.RetailPlatform,
+  sync(order: OrderSyncItem, store: Store): Observable<OrderSyncItem> {
+    return this.http.get<boolean>('mo/syncorder', {
+      OrderCode: order.OrderId,
+      StoreCode: order.LoginId,
+      EPlatform: order.Platform,
+    }).map((value) => { return {
+          OrderId: order.OrderId, OrderStatus: order.OrderStatus, LoginId: store.StoreCode, Platform: store.RetailPlatform, Success: value,
+       }
     });
+  }
+
+  payOrder(orderCode: string) {
+    return this.http.post('mo/orderpay', {
+      HMBOrderCode: orderCode,
+    })
+  }
+
+  submitOrder(orderCode: string) {
+    return this.http.post('mo/submitorder', {
+      HMBOrderCode: orderCode,
+    })
+  }
+
+  cancelOrder(orderCode: string) {
+    return this.http.post('mo/cancelorder', {
+      HMBOrderCode: orderCode,
+    })
   }
 }

@@ -5,7 +5,7 @@ import { Http as RawHttp } from '@angular/http';
 
 import { DialogModule, CoreModule } from '../../components';
 
-import { Http, AuthorizeGuard, AuthorizeService, StoreService, AccountService, ProductService, OrderService } from './services';
+import { Http, AuthorizeGuard, AuthorizeService, StoreService, AccountService, ProductService, OrderService, UserService } from './services';
 
 import { CORE_COMPONENTS } from './components';
 
@@ -25,7 +25,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [Http, AuthorizeService, AuthorizeGuard, StoreService, AccountService, ProductService, OrderService],
+      providers: [Http, AuthorizeService, AuthorizeGuard, StoreService, AccountService, ProductService, OrderService, UserService],
     }
   }
 }

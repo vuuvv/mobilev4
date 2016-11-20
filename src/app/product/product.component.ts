@@ -1,9 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params, Router, Event } from '@angular/router';
 
 import { Node, Category, Http, ProductService, Product, Store, AuthorizeService } from '../shared';
-import { DialogService, OverlayService } from '../../components';
+import { DialogService, OverlayService, TouchDragDirective } from '../../components';
 
 type State = 'list' | 'detail' | 'stores' | 'publish';
 
@@ -13,6 +13,7 @@ type State = 'list' | 'detail' | 'stores' | 'publish';
   styleUrls: ['./product.component.less'],
 })
 export class ProductComponent implements OnInit {
+  @ViewChild('categories') categoriesDom: TouchDragDirective;
   private state: State = 'list';
 
   private categories: Node<Category>[] = [];
@@ -37,6 +38,7 @@ export class ProductComponent implements OnInit {
   private loading = false;
 
   constructor(
+    private elementRef: ElementRef,
     private authorizeService: AuthorizeService,
     private productService: ProductService,
     private route: ActivatedRoute,
@@ -50,6 +52,9 @@ export class ProductComponent implements OnInit {
     this.stores = this.authorizeService.user.stores;
     this.route.params.forEach((params: Params) => {
       this.dispatch(params);
+      setTimeout(() => {
+        this.active();
+      }, 300);
     })
 
     this.productService.getCategories().subscribe((value) => {
@@ -76,6 +81,13 @@ export class ProductComponent implements OnInit {
         // list
         this.viewList(params['category'], params['keywords']);
         return;
+    }
+  }
+
+  active() {
+    let e = this.elementRef.nativeElement.querySelector('.categories a.active')
+    if (e) {
+      this.categoriesDom.moveX(-e.offsetLeft + 150);
     }
   }
 

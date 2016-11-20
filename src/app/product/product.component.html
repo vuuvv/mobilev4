@@ -7,8 +7,8 @@
   <v-header class="category-container">
     <v-btn class="left" v-home icon="home"></v-btn>
     <div class="top-nav">
-      <div class="categories" v-touch-drag>
-        <a *ngFor="let c of mainCategories" [routerLink]="['/product/home/list', {category: c.Id}]" [class.active]="c.Id==category">
+      <div class="categories" v-touch-drag #categories=touchDrag>
+        <a *ngFor="let c of mainCategories" #categoryLink [routerLink]="['/product/home/list', {category: c.Id}]" [class.active]="c.Id==category">
           {{ c.Name }}
         </a>
       </div>
@@ -24,7 +24,9 @@
     <v-loading-box *ngIf="loading"></v-loading-box>
     <v-empty-page title="您还没有相关的产品" *ngIf="!products.length && !loading"></v-empty-page>
   </v-content>
+  <!--
   <v-float-btn icon="search" [routerLink]="['/product/search']"></v-float-btn>
+  -->
 </v-page>
 <product-detail [product]="product" [class.hidden]="state!='detail'" (select)="onSelect($event)" (publish)="showStores($event)"></product-detail>
 <product-select-store [stores]="productService.getUnpublishStores(product)" [class.hidden]="state!='stores'" (select)="showPublish($event)"></product-select-store>

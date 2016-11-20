@@ -7,3 +7,4 @@ export * from './product.service';
 export * from './url-serializer';
 export * from './test.service';
 export * from './order.service';
+export * from './user.service';

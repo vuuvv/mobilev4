@@ -1,3 +1,4 @@
+import { Store } from './store';
 
 export class OrderItem {
   ProductName: string;
@@ -22,4 +23,10 @@ export class OrderSyncItem {
   OrderStatus: string;
   LoginId: string;
   Platform: string;
+  Success?: boolean;
+}
+
+export class OrderSyncItems {
+  store: Store;
+  items: OrderSyncItem[];
 }

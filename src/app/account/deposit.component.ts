@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params  } from '@angular/router';
 
 import { buildUrl, AuthorizeService } from '../shared';
 
@@ -8,7 +9,15 @@ import { buildUrl, AuthorizeService } from '../shared';
 export class DepositComponent {
   amount: number;
 
-  constructor(private authService: AuthorizeService) {
+  constructor(
+    private authService: AuthorizeService,
+    private route: ActivatedRoute) {
+  }
+
+  ngOnInit() {
+    this.route.params.forEach((params: Params) => {
+      this.amount = params['amount'];
+    });
   }
 
   submit() {

@@ -1,7 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import { Store, Order, OrderItem, OrderService } from '../shared';
+import { Store, Order, OrderItem, OrderService, UserService } from '../shared';
+import { DialogService, OverlayService } from '../../components';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/from';
 
 @Component({
   templateUrl: './orders.component.html',
@@ -20,6 +24,10 @@ export class OrdersComponent {
   private loading = false;
 
   constructor(
+    private router: Router,
+    private userService: UserService,
+    private overlayService: OverlayService,
+    private dialogService: DialogService,
     private orderService: OrderService,
     private route: ActivatedRoute) {
   }
@@ -88,6 +96,31 @@ export class OrdersComponent {
     }, 0);
   }
 
-  sync() {
+  pay() {
+    if (!this.totalCount()) {
+      this.dialogService.alert('请选择需要付款的订单');
+      return;
+    }
+    this.userService.balance().map((balance: number) => {
+      let fee = this.totalPrice();
+      let total = this.totalCount();
+      let i = 0;
+      if (balance < fee) {
+        this.dialogService.confirm(`您的余额: ¥${balance}, 您需要支付: ¥${fee}, 需充值: ¥${(fee - balance).toFixed(2)}, 是否去充值`, '余额不足').ok((comp) => {
+          comp.close();
+          this.router.navigate(['/account/deposit', {amount: (fee - balance).toFixed(2)}]);
+        })
+      } else {
+        this.overlayService.loading('提交订单...');
+        Observable.from(this.orders).filter((order: Order) => order.$$Checked).concatMap((order: Order) => {
+          return this.orderService.payOrder(order.HMBOrderCode);
+        }).subscribe(() => {
+          i++;
+          if (i == total) {
+            this.overlayService.toast('提交订单成功');
+          }
+        }, () => this.overlayService.hideToast());
+      }
+    }).subscribe(() => null);
   }
 }
