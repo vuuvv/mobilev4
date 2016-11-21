@@ -111,15 +111,17 @@ export class OrdersComponent {
           this.router.navigate(['/account/deposit', {amount: (fee - balance).toFixed(2)}]);
         })
       } else {
-        this.overlayService.loading('提交订单...');
-        Observable.from(this.orders).filter((order: Order) => order.$$Checked).concatMap((order: Order) => {
-          return this.orderService.payOrder(order.HMBOrderCode);
-        }).subscribe(() => {
-          i++;
-          if (i == total) {
-            this.overlayService.toast('提交订单成功');
-          }
-        }, () => this.overlayService.hideToast());
+        this.dialogService.confirm('本次订单提交需支付: ¥${fee}元, 您的余额为:￥${balance, 确定提交订单吗}', '订单提交').ok((comp) => {
+          this.overlayService.loading('提交订单...');
+          Observable.from(this.orders).filter((order: Order) => order.$$Checked).concatMap((order: Order) => {
+            return this.orderService.payOrder(order.HMBOrderCode);
+          }).subscribe(() => {
+            i++;
+            if (i == total) {
+              this.overlayService.toast('提交订单成功');
+            }
+          }, () => this.overlayService.hideToast());
+        });
       }
     }).subscribe(() => null);
   }

@@ -51,7 +51,7 @@ export class ProductPublishComponent implements OnChanges {
       if (this.product.skuList && this.product.skuList.length) {
         for (let sku of this.product.skuList) {
           this.publishProduct.skus.push({
-            skuId: sku.hmbskucode,
+            skuId: sku.id,
             sku: sku.hmbskucode,
             title: sku.title,
             skuPrice: this.publishProduct.spuPrice,
@@ -128,7 +128,7 @@ export class ProductPublishComponent implements OnChanges {
     if (this.product.skuList && this.product.skuList.length) {
       for(let sku of this.product.skuList) {
         this.publishProduct.skus.push({
-          skuId: sku.skuId,
+          skuId: sku.id,
           skuPrice: this.publishProduct.spuPrice,
         });
       }

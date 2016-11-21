@@ -155,7 +155,6 @@ export class ProductComponent implements OnInit {
           this.alertAndBack("无效的产品");
           return;
         } else {
-          value.skuList = this.product.skuList;
           this.publishProduct = value;
         }
       });

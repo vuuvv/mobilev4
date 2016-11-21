@@ -3,7 +3,7 @@ export class ProductSku {
   title: string;
   price: number;
   weight: number;
-  skuId?: string;
+  id?: string;
 }
 
 export class Product {
