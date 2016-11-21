@@ -32,7 +32,10 @@ export class AuthorizeService {
   }
 
   login(data: Login): Observable<User> {
-    return this.http.post<User>('mo/login', data, true).map((user: User) => this.doLogin(user));
+    return this.http.post<User>('mo/login', data, true).concatMap((user: User) => {
+      this.doLogin(user)
+      return this.update();
+    });
   }
 
   logout(): Observable<any> {

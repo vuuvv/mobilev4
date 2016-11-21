@@ -9,8 +9,6 @@ import { DialogService } from '../../components';
   styleUrls: ['./user.component.less'],
 })
 export class UserComponent implements OnInit {
-  user: User;
-
   constructor(
     private authorize: AuthorizeService,
     private router: Router,
@@ -18,7 +16,10 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = this.authorize.user;
+  }
+
+  get user(): User {
+    return this.authorize.user;
   }
 
   logout() {

@@ -10,10 +10,12 @@ import { AuthorizeService } from './authorize';
 export class ProductService {
   private categories: Node<Category>[];
   private mainCategories: Category[];
-  private stores: Store[] = [];
 
   constructor(private http: Http, private authorizeService: AuthorizeService) {
-    this.stores = authorizeService.user.stores;
+  }
+
+  get stores(): Store[] {
+    return this.authorizeService.user.stores;
   }
 
   getCategories(): Observable<Node<Category>[]> {
