@@ -108,6 +108,7 @@ export class ProductComponent implements OnInit {
   }
 
   viewList(category: string, keywords: string) {
+    category = category || '0';
     if (!this.sameRoute(category, keywords) || !this.products.length) {
       this.category = category;
       this.keywords = keywords;

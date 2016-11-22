@@ -67,8 +67,9 @@ export class HomeComponent implements OnInit {
 
     this.carouselConfig = {
       sliders: [
-        'http://www.huijinet.com/images/ncds/zphone1.jpg',
-        'http://www.huijinet.com/images/ncds/zqPhone.jpg',
+        'http://www.huijinet.com/ckfinder/userfiles/images/双11一触即发(1).jpg',
+        'http://www.huijinet.com/ckfinder/userfiles/images/pc1.jpg',
+        'http://www.huijinet.com/ckfinder/userfiles/images/pc2.jpg',
       ],
       showIndicator: true,
     }

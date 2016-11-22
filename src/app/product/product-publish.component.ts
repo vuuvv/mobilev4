@@ -117,11 +117,13 @@ export class ProductPublishComponent implements OnChanges {
 
     let cate = this.getCheckedCategory();
     if (!cate.length) {
-      this.goto('category');
-      this.dialogService.alert("请选择类型");
-      return;
+      this.publishProduct.cateIds = null;
+      // this.goto('category');
+      // this.dialogService.alert("请选择类型");
+      // return;
+    } else {
+      this.publishProduct.cateIds = cate.map((v) => v.cate_id).join(',');
     }
-    this.publishProduct.cateIds = cate.map((v) => v.cate_id).join(',');
 
     this.publishProduct.skus = [];
 

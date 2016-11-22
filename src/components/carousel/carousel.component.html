@@ -11,7 +11,7 @@
    (panright)="move($event)"
    (swipleft)="prev()"
    (swipright)="next()">
-    <li *ngFor="let slider of config.sliders" [style.background-image]="slider | backgroundUrl" [style.width]="elWidth | px">
+    <li *ngFor="let slider of config.sliders" [style.background-image]="slider | backgroundUrl | unsafe" [style.width]="elWidth | px">
     </li>
   </ul>
   <div class="indicator" *ngIf="config.showIndicator">

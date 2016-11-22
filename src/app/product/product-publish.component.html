@@ -48,7 +48,7 @@
             <div class="weui-cell origin">
               <div class="weui-cell__bd">
                 <textarea class="weui-textarea" placeholder="请输入文本" rows="3" [(ngModel)]="publishProduct.subject"></textarea>
-                <div class="weui-textarea-counter"><span>0</span>/200</div>
+                <div class="weui-textarea-counter"><span>{{ publishProduct?.subject?.length }}</span>/200</div>
               </div>
             </div>
           </div>

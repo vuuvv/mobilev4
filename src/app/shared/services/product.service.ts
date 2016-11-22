@@ -35,7 +35,10 @@ export class ProductService {
     }
 
     return this.getCategories().map((value: Node<Category>[]) => {
-      var ret: Category[] = [];
+      var ret: Category[] = [{
+        Id: '0',
+        Name: '全部',
+      }];
 
       for (let k of value) {
         if (k.children) {
@@ -132,5 +135,8 @@ export class ProductService {
 
   publishProduct(data: any): Observable<any> {
     return this.http.post('mo/publish', data);
+  }
+
+  productUpdateInfo() {
   }
 }

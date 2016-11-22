@@ -48,12 +48,12 @@ export class OrderComponent {
           this.router.navigate(['/account/deposit', {amount: (fee - balance).toFixed(2)}]);
         })
       } else {
-        this.dialogService.confirm('本次订单提交需支付: ¥${fee}元, 您的余额为:￥${balance, 确定提交订单吗}', '订单提交').ok((comp) => {
+        this.dialogService.confirm(`本次订单提交需支付: ¥${fee}元, 您的余额为:￥${balance}, 确定提交订单吗`, '订单提交').ok((comp) => {
           comp.close();
           this.overlayService.loading('提交订单...');
           this.orderService.payOrder(this.order.HMBOrderCode).subscribe(() => {
             this.overlayService.toast();
-          }, () => this.overlayService.hideToast());
+          }, () => this.overlayService.hideToast(), () => this.authorizeService.update().subscribe(() => null));
         })
       }
     }).subscribe(() => null);
@@ -75,7 +75,7 @@ export class OrderComponent {
       this.overlayService.loading('取消订单...');
       this.orderService.cancelOrder(this.order.HMBOrderCode).subscribe(() => {
         this.overlayService.toast();
-      }, () => this.overlayService.hideToast());
+      }, () => this.overlayService.hideToast(), () => this.authorizeService.update().subscribe(() => null));
     })
   }
 }

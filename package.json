@@ -5,7 +5,7 @@
   "angular-cli": {},
   "scripts": {
     "start": "ng serve --host=0.0.0.0",
-    "build": "ng build --prod",
+    "build": "ng build --prod --no-vendor-chunk",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import { Store, Order, OrderItem, OrderService, UserService } from '../shared';
+import { Store, Order, OrderItem, OrderService, UserService, AuthorizeService } from '../shared';
 import { DialogService, OverlayService } from '../../components';
 
 import { Observable } from 'rxjs/Observable';
@@ -26,6 +26,7 @@ export class OrdersComponent {
   constructor(
     private router: Router,
     private userService: UserService,
+    private authorizeService: AuthorizeService,
     private overlayService: OverlayService,
     private dialogService: DialogService,
     private orderService: OrderService,
@@ -111,7 +112,8 @@ export class OrdersComponent {
           this.router.navigate(['/account/deposit', {amount: (fee - balance).toFixed(2)}]);
         })
       } else {
-        this.dialogService.confirm('本次订单提交需支付: ¥${fee}元, 您的余额为:￥${balance, 确定提交订单吗}', '订单提交').ok((comp) => {
+        this.dialogService.confirm(`本次订单提交需支付: ¥${fee}元, 您的余额为:￥${balance}, 确定提交订单吗`, '订单提交').ok((comp) => {
+          comp.close();
           this.overlayService.loading('提交订单...');
           Observable.from(this.orders).filter((order: Order) => order.$$Checked).concatMap((order: Order) => {
             return this.orderService.payOrder(order.HMBOrderCode);
@@ -120,7 +122,7 @@ export class OrdersComponent {
             if (i == total) {
               this.overlayService.toast('提交订单成功');
             }
-          }, () => this.overlayService.hideToast());
+          }, () => this.overlayService.hideToast(), () => this.authorizeService.update().subscribe(() => null));
         });
       }
     }).subscribe(() => null);

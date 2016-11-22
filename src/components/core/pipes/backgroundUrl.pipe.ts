@@ -8,6 +8,6 @@ export class BackgroundUrlPipe implements PipeTransform {
     if (!value) {
       return 'none';
     }
-    return `url(${value})`;
+    return `url('${value}')`;
   }
 }
