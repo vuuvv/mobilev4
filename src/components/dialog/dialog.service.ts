@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/concatmap';
+import 'rxjs/add/operator/concatMap';
 import 'rxjs/add/operator/map';
 
 import { OverlayService } from '../overlay';
