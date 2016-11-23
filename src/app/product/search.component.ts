@@ -9,6 +9,7 @@ import { Product, ProductService } from '../shared';
 export class SearchComponent {
   private products: Product[];
   private loading = false;
+  private keywords = "";
 
   constructor(private productService: ProductService) {
   }
@@ -21,7 +22,7 @@ export class SearchComponent {
 
   search() {
     console.log('value change');
-    this.productService.getProducts().subscribe((value) => {
+    this.productService.getProducts(1, 10, undefined, this.keywords).subscribe((value) => {
       this.products = value;
     })
   }

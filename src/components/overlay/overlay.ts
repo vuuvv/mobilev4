@@ -39,6 +39,12 @@ export class OverlayComponent implements OnInit {
     this.config.instance = instance;
     this.overlayService.instance(this.config);
   }
+
+  confirm() {
+  }
+
+  alert() {
+  }
 }
 
 @Component({

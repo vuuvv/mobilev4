@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Store, Order, OrderItem, OrderService, UserService, AuthorizeService } from '../shared';
@@ -11,8 +11,9 @@ import 'rxjs/add/observable/from';
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.less'],
 })
-export class OrdersComponent {
+export class OrdersComponent implements OnInit, AfterViewInit {
   private state: string;
+  private silent: string;
   private keywords: string;
 
   private orders: Order[] = [];
@@ -36,10 +37,20 @@ export class OrdersComponent {
   ngOnInit() {
     this.route.params.forEach((params: Params) => {
       this.state = params['state'];
+      this.silent = params['silent'];
       this.orders = [];
       this.page = 1;
+      if (this.state == 'unpay' && !this.silent) {
+        this.dialogService.confirm('是否需要同步订单?', '同步订单').ok((comp) => {
+          comp.close();
+          this.router.navigate(['/order/sync']);
+        })
+      }
       this.getOrderList();
     })
+  }
+
+  ngAfterViewInit() {
   }
 
   getOrderList() {
@@ -50,7 +61,9 @@ export class OrdersComponent {
     this.orderService.getOrderList(this.state, this.keywords, this.page, this.pageSize).subscribe((value: Order[]) => {
       this.orders = this.orders.concat(value);
       this.loading = false;
-      this.page++;
+      if (value && value.length >= 0) {
+        this.page++;
+      }
     });
   }
 

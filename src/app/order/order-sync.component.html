@@ -1,6 +1,6 @@
 <v-page>
   <v-header title="同步订单">
-    <v-btn class="left" v-back icon="back"></v-btn>
+    <v-btn class="left" icon="back" [routerLink]="['/order/list/unpay', {silent: true}]"></v-btn>
     <v-btn class="right" v-home icon="home"></v-btn>
   </v-header>
   <v-content>

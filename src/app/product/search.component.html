@@ -2,7 +2,7 @@
   <v-header>
     <v-btn class="left" v-back icon="back"></v-btn>
     <div class="searchinput">
-      <input type="text" autocomplete="off" placeholder="搜索商品/种类/编码" v-debounce [delay]="2000" (valueChanged)="search()">
+      <input type="text" autocomplete="off" placeholder="搜索商品/种类/编码" v-debounce [delay]="2000" (valueChanged)="search()" [(ngModel)]="keywords">
       <i class="iconfont icon-search" ></i>
     </div>
     <v-btn class="right" label="分类" [routerLink]="['/product/category']"></v-btn>
