@@ -14,6 +14,7 @@ import { LoginModule } from './login';
 import { StoreModule } from './store';
 import { AccountModule } from './account';
 import { SharedModule } from './shared';
+import { UserModule } from './user';
 
 import { AppComponent } from './app.component';
 
@@ -48,6 +49,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
     LoginModule,
     StoreModule,
     AccountModule,
+    UserModule,
 
     CoreModule.forRoot(),
     OverlayModule.forRoot(),

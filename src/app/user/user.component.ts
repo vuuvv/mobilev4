@@ -32,6 +32,9 @@ export class UserComponent implements OnInit {
   }
 
   balance() {
+    if (!this.user) {
+      return 0;
+    }
     return this.user.account.reduce((a, c) => a + c.Balance, 0);
   }
 }

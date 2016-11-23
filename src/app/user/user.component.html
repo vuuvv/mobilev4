@@ -13,8 +13,8 @@
         </div>
         <div class="weui-cell__bd">
           <div>
-            <p class="username">{{ user.user.NickName }}</p>
-            <p class="usercode">{{ user.user.UserCode }}</p>
+            <p class="username">{{ user?.user.NickName }}</p>
+            <p class="usercode">{{ user?.user.UserCode }}</p>
           </div>
         </div>
         <div class="weui-cell__ft">
@@ -113,7 +113,7 @@
           <p>店铺管理</p>
         </div>
         <div class="weui-cell__ft">
-          <p>已授权{{ user.stores.length }}个店铺</p>
+          <p>已授权{{ user?.stores.length }}个店铺</p>
         </div>
       </a>
       <a class="weui-cell weui-cell_access" [routerLink]="['/account']">

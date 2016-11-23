@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeLayoutComponent, HomeComponent } from './home.component';
 
 import { NotifyComponent } from '../notify';
+import { UserComponent } from '../user';
 
 import { AuthorizeGuard } from '../shared';
 
@@ -23,7 +24,8 @@ const homeRoutes: Routes = [
       },
       {
         path: 'user',
-        loadChildren: 'app/user/user.module#UserModule',
+        canActivate: [AuthorizeGuard],
+        component: UserComponent,
       },
       {
         path: 'notify',

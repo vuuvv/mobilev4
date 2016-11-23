@@ -17,7 +17,7 @@ import { AuthorizeGuard } from '../shared';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home/user',
     canActivateChild: [AuthorizeGuard],
     children: [
       {
@@ -75,5 +75,8 @@ const routes: Routes = [
     GenderComponent,
     PasswordComponent,
   ],
+  exports: [
+    UserComponent,
+  ]
 })
 export class UserModule {}
