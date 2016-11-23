@@ -8,7 +8,7 @@ import {
 
 import { Observable } from 'rxjs/Observable';
 
-import { OverlayService } from '../overlay';
+import { OverlayService } from './overlay.service';
 
 @Component({
   templateUrl: './confirm.html',

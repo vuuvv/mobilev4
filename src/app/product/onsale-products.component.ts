@@ -99,7 +99,6 @@ export class OnsaleProductsComponent implements OnInit {
     if (!this.sameRoute(category, keywords) || !this.products.length) {
       this.category = category;
       this.keywords = keywords;
-      console.log('refresh');
       this.products = [];
       this.page = 1;
       this.getProducts();

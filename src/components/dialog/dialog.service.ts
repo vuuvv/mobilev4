@@ -6,8 +6,8 @@ import 'rxjs/add/operator/concatmap';
 import 'rxjs/add/operator/map';
 
 import { OverlayService } from '../overlay';
-import { ConfirmComponent } from './confirm.component';
-import { AlertComponent } from './alert.component';
+import { ConfirmComponent } from '../overlay/confirm.component';
+import { AlertComponent } from '../overlay/alert.component';
 
 export class AlertResult {
   constructor(

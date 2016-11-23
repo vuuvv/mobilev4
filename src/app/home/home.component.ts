@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { trigger, state, style, transition, animate } from '@angular/core';
 
-import { ConfirmComponent, DialogService, CarouselConfig } from '../../components';
+import { DialogService, CarouselConfig } from '../../components';
 
 import { Http } from '../shared';
 

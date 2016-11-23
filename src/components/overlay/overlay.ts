@@ -6,12 +6,10 @@ import {
  ViewContainerRef,
  EventEmitter,
  ViewEncapsulation,
+ ComponentFactoryResolver,
  OnInit,
 } from '@angular/core';
 
-import { RuntimeCompiler } from '@angular/compiler'
-
-import { ComponentBuilder } from '../core/services';
 import { OverlayService, OverlayConfig } from './overlay.service';
 
 const OVERLAY_ID_KEY: string = '$$OVERLAY_ID_KEY$$';
@@ -23,11 +21,13 @@ export class OverlayComponent implements OnInit {
   constructor(
     private overlayService: OverlayService,
     private viewContainerRef: ViewContainerRef,
-    private componentBuilder: ComponentBuilder) {
+    private componentFactoryResolver: ComponentFactoryResolver) {
   }
 
   ngOnInit() {
-    let componentRef = this.componentBuilder.createComponent(this.config.componentType, this.viewContainerRef);
+    let componentfactory = this.componentFactoryResolver.resolveComponentFactory(this.config.componentType);
+    let componentRef = this.viewContainerRef.createComponent(componentfactory);
+    // let componentRef = this.componentBuilder.createComponent(this.config.componentType, this.viewContainerRef);
     let instance = componentRef.instance;
     let data = this.config.data;
     if (data) {
